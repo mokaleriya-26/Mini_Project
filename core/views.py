@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     """View for the Main Page (Home)"""
-    return render(request, 'core/index.html')
+    return render(request, 'index.html')
 def signup_view(request):
     print("Signup view triggered with method:", request.method)
     if request.method == 'POST':
@@ -35,7 +35,7 @@ def signup_view(request):
         print("✅ Redirecting to signin...")
         return redirect('signin')
 
-    return render(request, 'core/signup.html')
+    return render(request, 'signup.html')
 
 def signin_view(request):
    if request.method == 'POST':
@@ -53,7 +53,7 @@ def signin_view(request):
             messages.error(request, 'Invalid email or password.')
             return redirect('signin')
 
-   return render(request, 'core/signin.html')
+   return render(request, 'signin.html')
 def signout_view(request):
     """Handle user sign out"""
     logout(request)
@@ -61,18 +61,18 @@ def signout_view(request):
     return redirect('signin')
 def about(request): 
     """View for the About Page"""
-    return render(request, 'core/about.html')
+    return render(request, 'about.html')
 def market_data(request):
     """View for the Market Data Page"""
-    return render(request, 'core/market_data.html')
+    return render(request, 'market_data.html')
 def privacy_policy(request):
     """View for the Privacy Policy Page"""
-    return render(request, 'core/privacy_policy.html',{})
+    return render(request, 'privacy_policy.html',{})
 def terms_of_service(request):
     """View for the Terms of Service Page"""    
-    return render(request, 'core/terms_of_service.html',{})
+    return render(request, 'terms_of_service.html',{})
 @login_required(login_url='/signin/')
 def analysis(request):
     # return HttpResponse("Analysis Page executed")
-    return render(request, 'core/analysis.html', {})
+    return render(request, 'analysis.html', {})
 

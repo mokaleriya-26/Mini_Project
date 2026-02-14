@@ -1,0 +1,498 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>FTTT - Market Alerts</title>
+
+
+
+  <link rel="stylesheet" href="{% static 'core/style.css' %}?v=2">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    {% if messages %}
+    <div id="message-container">
+      {% for message in messages %}
+      <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  <main>
+
+    {% block content %}
+
+
+
+    <header class="new-header-wrapper">
+
+      <div class="nav-inner container" role="navigation" aria-label="Main navigation">
+
+        <div class="brand" aria-hidden="false">
+
+          <div class="logo">T→T</div>
+
+          <div>
+
+            <div style="font-size:13px;opacity:0.9">From Tweets</div>
+
+            <div style="font-size:12px;opacity:0.6;margin-top:-4px">to Trades</div>
+
+          </div>
+
+        </div>
+
+
+
+        <nav aria-hidden="false">
+         {% if user.is_authenticated %}
+          <a href="{% url 'analysis' %}" class="nav-item">Analysis</a>
+         {% else %}
+           <a href="{% url 'signin' %}" class="nav-item">Analysis</a>
+          {% endif %}
+
+          <a href="#top-companies" class="nav-item">Top Companies</a>
+
+          <a href="#flow" class="nav-item">How it Works</a>
+
+        </nav>
+
+
+
+        <div class="cta">
+
+            {% if user.is_authenticated %}
+               <span style="color:white; margin-right:10px;">Hi, {{ user.first_name|default:user.username }}!</span>
+               <a href="{% url 'signout' %}" class="btn btn-primary" aria-label="Sign Out">Sign Out</a>
+            {% else %}
+               <a href="{% url 'signin' %}" class="btn btn-ghost" aria-label="Sign In">Sign In</a>
+               <a href="{% url 'signup' %}" class="btn btn-primary" aria-label="Sign Up">Sign Up</a>
+            {% endif %}
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <div class="container" id="top">
+
+
+
+      <section class="hero" aria-labelledby="hero-heading">
+
+        <div>
+
+          <div class="eyebrow">Real-time • AI • Sentiment</div>
+
+          <h1 id="hero-heading">Never Miss a <span class="accent-text">Market-Moving</span><br>Moment Again</h1>
+
+          <p class="lead">From Tweets to Trades — convert social chatter into real-time trading signals and market alerts. Trusted by thousands of active traders and analysts.</p>
+
+
+
+          <div class="hero-ctas">
+
+            <a href="{% url 'signup' %}" class="btn btn-primary" style="padding:14px 20px;font-size:15px">Sign Up</a>
+
+           
+
+          </div>
+
+
+
+          <div class="small-note">User Friendly • 5-minute integration</div>
+         
+
+
+          
+
+        </div>
+
+
+
+        <div class="hero-right card-mock" aria-hidden="false">
+
+         <div style="padding: 100px 20px; text-align: center;  color: rgba(255, 255, 255, 0.4);">live Insight loading......</div>
+         </div>
+
+      </section>
+
+
+
+      <section id="features" class="features" aria-label="Features">
+
+        <div class="feature-card" role="article">
+
+          <div class="feature-icon">⚡</div>
+
+          <h3>Market Trend Analysis</h3>
+
+          <p>Continuously analyze market data to identify emerging trends and highlight sectors showing unusual momentum or investor attention.</p>
+
+        </div>
+
+        <div class="feature-card" role="article">
+
+          <div class="feature-icon">🤖</div>
+
+          <h3>AI-driven Insights</h3>
+
+          <p>Proprietary models filter noise and surface high-confidence trade ideas with sentiment and event scoring.</p>
+
+        </div>
+
+        <div class="feature-card" role="article">
+
+          <div class="feature-icon">📰</div>
+
+          <h3>Sentiment Tracking</h3>
+
+          <p>Track sentiment trends across sectors and map social momentum to price movement with clear visualizations.</p>
+
+        </div>
+
+      </section>
+
+
+
+      <section id="top-companies" class="top-companies" aria-label="Top trending companies">
+
+        <h2 style="margin:6px 0 6px;font-size:20px">Top Trending Companies</h2>
+
+        <div style="color:rgba(217,226,236,0.7);margin-bottom:8px">Live social and market movement</div>
+
+
+
+        <div class="companies-row" aria-hidden="false">
+
+          <div class="company">
+
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+
+              <div style="display:flex;gap:10px;align-items:center">
+
+                <div class="logo-sm">H</div>
+
+                <div>
+
+                  <div style="font-weight:800">HDFC Bank</div>
+
+                  <div style="font-size:12px;color:rgba(255,255,255,0.6)">HDFC . Finance</div>
+
+                </div>
+
+              </div>
+
+              <div style="text-align:right">
+
+                <div class="tick" style="font-size:16px">--</div>
+
+                <div class="chg">--</div>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top:8px;font-size:13px;color:rgba(217,226,236,0.65)">Data Loading...</div>
+
+          </div>
+
+
+
+          <div class="company">
+
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+
+              <div style="display:flex;gap:10px;align-items:center">
+
+                <div class="logo-sm">R</div>
+
+                <div>
+
+                  <div style="font-weight:800">Reliance Ind.</div>
+
+                  <div style="font-size:12px;color:rgba(255,255,255,0.6)">REL • Technology</div>
+
+                </div>
+
+              </div>
+
+              <div style="text-align:right">
+
+                <div class="tick" style="font-size:16px">--</div>
+
+                <div class="chg down">--</div>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top:8px;font-size:13px;color:rgba(217,226,236,0.65)">Data Loading...</div>
+
+          </div>
+
+
+
+          <div class="company">
+
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+
+              <div style="display:flex;gap:10px;align-items:center">
+
+                <div class="logo-sm">T</div>
+
+                <div>
+
+                  <div style="font-weight:800">TCS </div>
+
+                  <div style="font-size:12px;color:rgba(255,255,255,0.6)">TCS . IT Services</div>
+
+                </div>
+
+              </div>
+
+              <div style="text-align:right">
+
+                <div class="tick" style="font-size:16px">--</div>
+
+                <div class="chg">--</div>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top:8px;font-size:13px;color:rgba(217,226,236,0.65)">Data Loading...</div>
+
+          </div>
+
+
+
+          <div class="company">
+
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center">
+
+              <div style="display:flex;gap:10px;align-items:center">
+
+                <div class="logo-sm">I</div>
+
+                <div>
+
+                  <div style="font-weight:800">ICICI</div>
+
+                  <div style="font-size:12px;color:rgba(255,255,255,0.6)">ICICI . Finance</div>
+
+                </div>
+
+              </div>
+
+              <div style="text-align:right">
+
+                <div class="tick" style="font-size:16px">--</div>
+
+                <div class="chg">--</div>
+
+              </div>
+
+            </div>
+
+            <div style="margin-top:8px;font-size:13px;color:rgba(217,226,236,0.65)">Data Loading...</div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <section id="flow" class="flow" aria-labelledby="flow-heading">
+
+        <h2 id="flow-heading" style="margin:0 0 12px">From Tweets to Trends — How it works</h2>
+
+        <div style="color:rgba(217,226,236,0.7);margin-bottom:12px">Raw social chatter → signal processing → trade-ready alerts</div>
+
+        <div class="flow-grid">
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+
+            <div class="flow-step">
+
+              <div class="num">1</div>
+
+              <div>
+
+                <h4>Collect</h4>
+
+                <p>We ingest tweets, threads, news, Reddit posts and message board chatter in real time across global feeds.</p>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="flow-step">
+
+              <div class="num">2</div>
+
+              <div>
+
+                <h4>Filter & Classify</h4>
+
+                <p>Our NLP pipeline removes bots and noise, classifies event types, and tags tickers & topics automatically.</p>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="flow-step">
+
+              <div class="num">3</div>
+
+              <div>
+
+                <h4>Score</h4>
+
+                <p>Signals are scored for confidence, volume, and sentiment drift. Only high-impact signals generate alerts.</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+
+            <div class="flow-step">
+
+              <div class="num">4</div>
+
+              <div>
+
+                <h4>Analysis</h4>
+
+                <p>Takes the historical data and sentiments in account for furhter analysis.</p>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="flow-step">
+
+              <div class="num">5</div>
+
+              <div>
+
+                <h4>Stock Prediction</h4>
+
+                <p>After thorough analysis, we can predict the stock price movement and suggest trades.</p>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="flow-step">
+
+              <div class="num">6</div>
+
+              <div>
+
+                <h4>Visualizations</h4>
+
+                <p>See trend timelines, sentiment heatmaps, ad correlation views to validate ideas before trading.</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- <footer>
+
+        <div class="footer-top">
+
+          <div>
+
+            <div style="font-weight:800;font-size:18px">Ready to turn chatter into alpha?</div>
+
+            <div style="color:rgba(217,226,236,0.7)">Start a free trial — get alerts for your watchlist in minutes.</div>
+
+          </div>
+
+
+
+          <form class="newsletter" role="form" aria-label="Sign up">
+
+            {% csrf_token %}
+
+            <input class="input" type="email" placeholder="Your work email" aria-label="Email address">
+
+            <button class="btn btn-primary">Start Free Trial</button>
+
+          </form>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+          <div>© <strong>From Tweets to Trades</strong> — 2025</div>
+
+          <div style="display:flex;gap:16px">
+
+            <a href="{% url 'privacy_policy' %}" style="color:rgba(217,226,236,0.6);text-decoration:none">Privacy Policy</a>
+
+            <a href="{% url 'terms_of_service' %}" style="color:rgba(217,226,236,0.6);text-decoration:none">Terms of Service</a>
+
+          </div>
+
+        </div>
+
+      </footer> -->
+
+    </div>
+
+    {% endblock content %}
+
+  </main>
+
+
+
+  <script src="{% static 'core/script.js' %}"></script>
+  <script>
+  setTimeout(() => {
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => alert.remove());
+  }, 4000); // Auto disappears after 4 seconds
+  </script>
+</body>
+</html>
