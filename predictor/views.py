@@ -14,7 +14,7 @@ import os
 
 COMPANY_NAMES = {
     "ADANIENT": "Adani Enterprises Limited",
-    "ADANIPORTS.": "Adani Ports & SEZ Limited",
+    "ADANIPORTS": "Adani Ports & SEZ Limited",
     "APOLLOHOSP": "Apollo Hospitals Enterprises Limited",
     "ASIANPAINT": "Asian Paints Limited",
     "AXISBANK": "Axis Bank Limited",
@@ -39,7 +39,7 @@ COMPANY_NAMES = {
     "INFY": "Infosys Limited",
     "ITC": "ITC Limited",
     "JIOFIN": "Jio Financial Services Limited",
-    "JSWSTEEL": "SW Steel Limited",
+    "JSWSTEEL": "JSW Steel Limited",
     "KOTAKBANK": "Kotak Mahindra Bank Limited",
     "LT": "Larsen & Toubro Limited",
     "M&M": "Mahindra & Mahindra Limited",
@@ -54,7 +54,7 @@ COMPANY_NAMES = {
     "SBIN": "State Bank of India",
     "SHRIRARAM": "Shriram Finance Limited",
     "SUNPHARMA": "Sun Pharmaceuticals Industries Limited",
-    "TATACONSUM": "ata Consumer Products Limited",
+    "TATACONSUM": "Tata Consumer Products Limited",
     "TATASTEEL": "Tata Steel Limited",
     "TCS": "Tata Consultancy Services Limited",
     "TECHM": "Tech Mahindra Limited",
