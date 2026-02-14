@@ -1,8 +1,8 @@
-# In predictor/urls.py
+# predictor/urls.py
 
 from django.urls import path
-from .views import get_stock_prediction
+from . import views
 
 urlpatterns = [
-    path('predict/<str:ticker>/', get_stock_prediction),
+    path('predict/<str:ticker>/', views.get_stock_prediction),
 ]

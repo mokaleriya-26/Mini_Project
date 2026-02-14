@@ -1,5 +1,7 @@
 /* === analysis.js (Wired to the Live API) === */
 
+console.log("NEW JS LOADED");
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // --- 1. GET ALL HTML ELEMENTS ---
@@ -30,23 +32,56 @@ document.addEventListener("DOMContentLoaded", () => {
     // The "value" MUST be the ticker that yfinance understands.
     // For Indian stocks, this is ".NS".
     const companies = [
-        "ADANIENT.NS - Adani Enterprises",
-        "ADANIPORTS.NS - Adani Ports & SEZ",
-        "APOLLOHOSP.NS - Apollo Hospitals",
-        "ASIANPAINT.NS - Asian Paints",
-        "AXISBANK.NS - Axis Bank",
-        "BAJFINANCE.NS - Bajaj Finance",
-        "BHARTIARTL.NS - Bharti Airtel",
-        "HDFCBANK.NS - HDFC Bank",
-        "INFY.NS - Infosys",
-        "ICICIBANK.NS - ICICI Bank",
-        "RELIANCE.NS - Reliance Industries",
+        "ADANIENT.NS - Adani Enterprises Limited",
+        "ADANIPORTS.NS - Adani Ports & SEZ Limited",
+        "APOLLOHOSP.NS - Apollo Hospitals Enterprises Limited",
+        "ASIANPAINT.NS - Asian Paints Limited",
+        "AXISBANK.NS - Axis Bank Limited",
+        "BAJAJ-AUTO.NS - Bajaj Auto Limited",
+        "BAJAJFINSV.NS - Bajaj Finserv Limited",
+        "BAJFINANCE.NS - Bajaj Finance Limited",
+        "BEL.NS - Bharti Electronics Limited",
+        "BHARTIARTL.NS - Bharti Airtel Limited",
+        "CIPLA.NS - Cipla Limited",
+        "COALINDIA.NS - Coal India Limited",
+        "DRREDDY.NS - Dr. Reddy's Laboratories Limited",
+        "EICHERMOT.NS - Eicher Motors Limited",
+        "ETERNAL.NS - Eternal Life Insurance Limited",
+        "GRASIM.NS - Grasim Industries Limited",
+        "HCLTECH.NS - HCL Technologies Limited",
+        "HDFCBANK.NS - HDFC Bank Limited",
+        "HDFCLIFE.NS - HDFC Life Insurance Company Limited",
+        "HINDALCO.NS - Hindalco Industries Limited",
+        "HINDUNILVR.NS - Hindustan Unilever Limited",
+        "ICICIBANK.NS - ICICI Bank Limited",
+        "INDIGO.NS - InterGlobe Aviation Limited",
+        "INFY.NS - Infosys Limited",
+        "ITC.NS - ITC Limited",
+        "JIOFIN.NS - Jio Financial Services Limited",
+        "JSWSTEEL.NS - JSW Steel Limited",
+        "KOTAKBANK.NS - Kotak Mahindra Bank Limited",
+        "LT.NS - Larsen & Toubro Limited",
+        "M&M.NS - Mahindra & Mahindra Limited",
+        "MARUTI.NS - Maruti Suzuki India Limited",
+        "MAXHEALTH.NS - Max Healthcare Institute Limited",
+        "NESTLEIND.NS - Nestle India Limited",
+        "NTPC.NS - NTPC Limited",
+        "ONGC.NS - Oil & Natural Gas Corporation Limited",
+        "POWERGRID.NS - Power Grid Corporation of India Limited",
+        "RELIANCE.NS - Reliance Industries Limited",
+        "SBILIFE.NS - SBI Life Insurance Company Limited",
         "SBIN.NS - State Bank of India",
-        "TCS.NS - Tata Consultancy Services",
-        "TATAMOTORS.NS - Tata Motors",
-        "TATASTEEL.NS - Tata Steel",
-        "WIPRO.NS - Wipro",
-        "AAPL - Apple (Test Ticker)" // For testing
+        "SHRIRARAM.NS - Shriram Finance Limited",
+        "SUNPHARMA.NS - Sun Pharmaceuticals Industries Limited",
+        "TATACONSUM.NS - Tata Consumer Products Limited",
+        "TATASTEEL.NS - Tata Steel Limited",
+        "TCS.NS - Tata Consultancy Services Limited",
+        "TECHM.NS - Tech Mahindra Limited",
+        "TITAN.NS - Titan Company Limited",
+        "TMPV.NS - Tata Motors Passenger Vehicles Limited",
+        "TRENT.NS - TRENT Limited",
+        "ULTRACEMCO.NS - UltraTech Cement Limited",
+        "WIPRO.NS - Wipro Limited",
     ];
 
     // --- 3. INITIALIZE THE PAGE ---
