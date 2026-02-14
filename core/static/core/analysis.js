@@ -1,7 +1,4 @@
 /* === analysis.js (Wired to the Live API) === */
-
-console.log("NEW JS LOADED");
-
 document.addEventListener("DOMContentLoaded", () => {
 
     // --- 1. GET ALL HTML ELEMENTS ---

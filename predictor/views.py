@@ -13,23 +13,56 @@ from datetime import datetime, timedelta
 import os
 
 COMPANY_NAMES = {
-    "AXISBANK": "Axis Bank",
-    "HDFCBANK": "HDFC Bank",
-    "ICICIBANK": "ICICI Bank",
+    "ADANIENT": "Adani Enterprises Limited",
+    "ADANIPORTS.": "Adani Ports & SEZ Limited",
+    "APOLLOHOSP": "Apollo Hospitals Enterprises Limited",
+    "ASIANPAINT": "Asian Paints Limited",
+    "AXISBANK": "Axis Bank Limited",
+    "BAJAJ-AUTO": "Bajaj Auto Limited",
+    "BAJAJFINSV": "Bajaj Finserv Limited",
+    "BAJFINANCE": "Bajaj Finance Limited",
+    "BEL": "Bharti Electronics Limited",
+    "BHARTIARTL": "Bharti Airtel Limited",
+    "CIPLA": "Cipla Limited",
+    "COALINDIA": "Coal India Limited",
+    "DRREDDY": "Dr. Reddy's Laboratories Limited",
+    "EICHERMOT": "Eicher Motors Limited",
+    "ETERNAL": "Eternal Life Insurance Limited",
+    "GRASIM": "Grasim Industries Limited",
+    "HCLTECH": "HCL Technologies Limited",
+    "HDFCBANK": "HDFC Bank Limited",
+    "HDFCLIFE": "HDFC Life Insurance Company Limited",
+    "HINDALCO": "Hindalco Industries Limited",
+    "HINDUNILVR": "Hindustan Unilever Limited",
+    "ICICIBANK": "ICICI Bank Limited",
+    "INDIGO": "InterGlobe Aviation Limited",
+    "INFY": "Infosys Limited",
+    "ITC": "ITC Limited",
+    "JIOFIN": "Jio Financial Services Limited",
+    "JSWSTEEL": "SW Steel Limited",
+    "KOTAKBANK": "Kotak Mahindra Bank Limited",
+    "LT": "Larsen & Toubro Limited",
+    "M&M": "Mahindra & Mahindra Limited",
+    "MARUTI": "Maruti Suzuki India Limited",
+    "MAXHEALTH": "Max Healthcare Institute Limited",
+    "NESTLEIND": "Nestle India Limited",
+    "NTPC": "NTPC Limited",
+    "ONGC": "Oil & Natural Gas Corporation Limited",
+    "POWERGRID": "Power Grid Corporation of India Limited",
+    "RELIANCE": "Reliance Industries Limited",
+    "SBILIFE": "SBI Life Insurance Company Limited",
     "SBIN": "State Bank of India",
-    "BHARTIARTL": "Bharti Airtel",
-    "RELIANCE": "Reliance Industries",
-    "TCS": "Tata Consultancy Services",
-    "INFY": "Infosys",
-    "WIPRO": "Wipro",
-    "ADANIENT": "Adani Enterprises",
-    "ADANIPORTS": "Adani Ports",
-    "APOLLOHOSP": "Apollo Hospitals",
-    "TATAMOTORS": "Tata Motors",
-    "TATASTEEL": "Tata Steel",
-    "BAJFINANCE": "Bajaj Finance",
-    "ASIANPAINT": "Asian Paints",
-    "AAPL": "Apple Inc"
+    "SHRIRARAM": "Shriram Finance Limited",
+    "SUNPHARMA": "Sun Pharmaceuticals Industries Limited",
+    "TATACONSUM": "ata Consumer Products Limited",
+    "TATASTEEL": "Tata Steel Limited",
+    "TCS": "Tata Consultancy Services Limited",
+    "TECHM": "Tech Mahindra Limited",
+    "TITAN": "Titan Company Limited",
+    "TMPV": "Tata Motors Passenger Vehicles Limited",
+    "TRENT": "TRENT Limited",
+    "ULTRACEMCO": "UltraTech Cement Limited",
+    "WIPRO": "Wipro Limited",
 }
 
 # ===================== CONFIG =====================
@@ -68,7 +101,7 @@ def build_company_keywords(ticker, company_name):
 
     # Individual words (Axis, Bank)
     for w in words:
-        if len(w) > 3:  # avoid junk like "of", "and"
+        if len(w) > 4:  # avoid junk like "of", "and"
             keywords.add(w)
 
     # Ticker symbol variations
@@ -116,7 +149,9 @@ def fetch_company_news(ticker, from_date, to_date):
 
         title_lower = title.lower()
 
-        if not any(k in title_lower for k in keywords):
+        if search_query.lower() not in title_lower and not any(
+            f" {k} " in f" {title_lower} " for k in keywords
+        ):
             continue
 
         sentiments.append(TextBlob(title).sentiment.polarity)
@@ -197,6 +232,8 @@ def get_stock_prediction(request, ticker):
         
         stock_data = yf.download(tickers=ticker, period="6mo", interval="1d")
         stock_data.reset_index(inplace=True)
+        ticker_obj = yf.Ticker(ticker)   # ⭐ NEW
+        info = ticker_obj.info           # ⭐ NEW
 
         # 🔒 FIX: flatten MultiIndex columns (CRITICAL)
         if isinstance(stock_data.columns, pd.MultiIndex):
@@ -282,13 +319,30 @@ def get_stock_prediction(request, ticker):
        # 1. Key Stats (FIXED)
         print("DEBUG: Processing key_stats...")
         last_row = stock_data.tail(1)
+        # Calculate 52-week range manually (BEST METHOD)
+        one_year_data = yf.download(ticker, period="1y", interval="1d")
+        if isinstance(one_year_data.columns, pd.MultiIndex):
+            one_year_data.columns = one_year_data.columns.get_level_values(0)
+        year_low = safe_float(one_year_data["Low"].min())
+        year_high = safe_float(one_year_data["High"].max())
 
         key_stats = {
+            # Price data (from history)
             "open": safe_float(last_row["Open"]),
             "high": safe_float(last_row["High"]),
             "low": safe_float(last_row["Low"]),
             "close": safe_float(last_row["price"]),
             "volume": safe_int(last_row["Volume"]),
+            "last_close": safe_float(last_row["price"]),
+            # Company stats (from info)
+            "market_cap": safe_int(info.get("marketCap")),
+            "pe_ratio": safe_float(info.get("trailingPE")),
+            "beta": safe_float(info.get("beta")),
+            "eps_basic": safe_float(info.get("epsTrailingTwelveMonths")),
+            "forward_pe": safe_float(info.get("forwardPE")),
+            "dividend_yield": safe_float(info.get("dividendYield")),
+            # 52 week range
+            "days_range": f"{year_low:.2f} - {year_high:.2f}",
         }
         # 2. Historical Graph (FIXED - SAFE)
         print("DEBUG: Processing historical_graph...")
