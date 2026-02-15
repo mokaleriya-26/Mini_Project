@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // ==============================
 // LIVE DATA LOADER (ADD BELOW)
 // ==============================
-
+let liveIndex = 0;
+let liveDataStore = [];
 async function loadTopCompanies() {
 
     const tickers = [
@@ -83,65 +84,87 @@ async function loadTopCompanies() {
                     `Volume: ${Number(data.key_stats.volume).toLocaleString()}`;
         }
 
-        // ===== LIVE GRAPH (FIRST COMPANY) =====
-        if (allData.length > 0) {
-
-            const best = allData[0];
-
-            liveTitle.innerText = `🔥 ${best.ticker}`;
-            livePrice.innerText =
-                `₹${Number(best.key_stats.last_close).toFixed(3)}`;
-
-            if (window.liveChartObj) {
-                window.liveChartObj.destroy();
-            }
-
-            window.liveChartObj = new Chart(liveCanvas, {
-                type: "line",
-                data: {
-                    labels: best.historical_graph_data.dates,
-                    datasets: [{
-                        data: best.historical_graph_data.prices,
-                        borderColor: "#00E0FF",
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: false,
-                        pointRadius: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        x: {
-                            display: true,
-                            ticks: {
-                                color: "white",
-                                maxTicksLimit: 6
-                            },
-                            grid: {
-                                color: "rgba(255,255,255,0.15)"
-                            }
-                        },
-                        y: {
-                            display: true,
-                            ticks: {
-                                color: "white"
-                            },
-                            grid: {
-                                color: "rgba(255,255,255,0.15)"
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
     } catch (error) {
         console.error("Error loading top companies:", error);
     }
+    liveDataStore = allData;
 }
-document.addEventListener("DOMContentLoaded", loadTopCompanies);
+function updateLiveInsight() {
+
+    if (!liveDataStore || liveDataStore.length === 0) return;
+
+    const best = liveDataStore[liveIndex];
+
+    const liveTitle = document.getElementById("live-title");
+    const livePrice = document.getElementById("live-price");
+    const liveCanvas = document.getElementById("liveChart");
+
+    liveTitle.innerText = `🔥 ${best.ticker}`;
+    livePrice.innerText =
+        `₹${Number(best.key_stats.last_close).toFixed(3)}`;
+
+    if (window.liveChartObj) {
+        window.liveChartObj.destroy();
+    }
+
+    window.liveChartObj = new Chart(liveCanvas, {
+        type: "line",
+        data: {
+            labels: best.historical_graph_data.dates,
+            datasets: [{
+                data: best.historical_graph_data.prices,
+                borderColor: "white",
+                borderWidth: 2,
+                tension: 0.3,
+                fill: false,
+                pointRadius: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: {
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(255,255,255,0.15)" }
+                },
+                y: {
+                    ticks: { color: "white" },
+                    grid: { color: "rgba(255,255,255,0.15)" }
+                }
+            }
+        }
+    });
+
+    // NEXT COMPANY
+    liveIndex = (liveIndex + 1) % liveDataStore.length;
+}
+document.addEventListener("DOMContentLoaded", async () => {
+
+    await loadTopCompanies();
+
+    updateLiveInsight();          // first company
+    setInterval(updateLiveInsight, 4000);  // slideshow
+});
+// ===== ARROW BUTTONS =====
+document.addEventListener("DOMContentLoaded", () => {
+
+    const nextBtn = document.getElementById("nextLive");
+    const prevBtn = document.getElementById("prevLive");
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            updateLiveInsight();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            liveIndex =
+                (liveIndex - 2 + liveDataStore.length)
+                % liveDataStore.length;
+            updateLiveInsight();
+        });
+    }
+});

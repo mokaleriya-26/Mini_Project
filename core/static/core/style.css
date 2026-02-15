@@ -688,3 +688,44 @@ body.signup-page .auth-btn-primary:hover {
     color: #000;
   }
 }
+.live-chart-wrapper {
+    position: relative;
+    height: 180px;
+    margin-top: 15px;
+}
+.live-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: rgba(0,0,0,0.6);
+    color: white;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+}
+
+#prevLive {
+    left: -20px;   /* OUTSIDE LEFT */
+}
+
+#nextLive {
+    right: -20px;  /* OUTSIDE RIGHT */
+}
+
+.live-arrow:hover {
+    background: white;
+    color: black;
+}
