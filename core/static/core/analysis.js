@@ -130,7 +130,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 data.latest_news.forEach(n => {
                     const div = document.createElement("div");
                     div.className = "news-item"; // Using a class from your HTML
-                    div.innerHTML = `<a href="${n.url}" target="_blank">${n.title}</a><div class="muted">${n.source}</div>`;
+                    let sentimentClass = "";
+                    if (n.sentiment_label === "Positive") {
+                        sentimentClass = "sent-positive";
+                    } else if (n.sentiment_label === "Negative") {
+                        sentimentClass = "sent-negative";
+                    } else {
+                        sentimentClass = "sent-neutral";
+                    }
+                    div.innerHTML = `
+                        <a href="${n.url}" target="_blank">${n.title}</a>
+                        <div class="muted">${n.source}</div>
+                        <div class="sentiment-badge ${sentimentClass}">
+                            ${n.sentiment_label} | ${n.sentiment_score}
+                        </div>
+                    `;
                     newsList.appendChild(div);
                 });
             } else {

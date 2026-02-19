@@ -154,11 +154,23 @@ def fetch_company_news(ticker, from_date, to_date):
         ):
             continue
 
-        sentiments.append(TextBlob(title).sentiment.polarity)
+        score = float(TextBlob(title).sentiment.polarity)
+        sentiments.append(score)
+
+        # Create label
+        if score > 0.1:
+            label = "Positive"
+        elif score < -0.1:
+            label = "Negative"
+        else:
+            label = "Neutral"
+
         headlines.append({
             "source": a.get("source", {}).get("name", "Unknown"),
             "title": title,
-            "url": a.get("url", "#")
+            "url": a.get("url", "#"),
+            "sentiment_score": round(score, 3),
+            "sentiment_label": label
         })
 
     # ================= PASS 2 : FALLBACK =================
@@ -181,11 +193,23 @@ def fetch_company_news(ticker, from_date, to_date):
             if not any(k in text for k in keywords):
                 continue
 
-            sentiments.append(TextBlob(title).sentiment.polarity)
+            score = float(TextBlob(title).sentiment.polarity)
+            sentiments.append(score)
+
+            # Create label
+            if score > 0.1:
+                label = "Positive"
+            elif score < -0.1:
+                label = "Negative"
+            else:
+                label = "Neutral"
+
             headlines.append({
                 "source": a.get("source", {}).get("name", "Unknown"),
                 "title": title,
-                "url": a.get("url", "#")
+                "url": a.get("url", "#"),
+                "sentiment_score": round(score, 3),
+                "sentiment_label": label
             })
 
     sentiment_score = float(np.mean(sentiments)) if sentiments else 0.0

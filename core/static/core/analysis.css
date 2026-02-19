@@ -77,3 +77,35 @@ canvas{width:100% !important;height:100% !important;}
 .stats-table td:last-child{font-weight:800;color:var(--accent-2);}
 .tip{margin-top:12px;color:rgba(217,226,236,0.7);font-size:13px;}
 .footer{margin-top:18px;color:rgba(217,226,236,0.55);font-size:13px;text-align:center;}
+
+.news-item {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sentiment-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sent-positive {
+  background: rgba(20,255,236,0.15);
+  color: #14FFEC;
+  border: 1px solid rgba(20,255,236,0.4);
+}
+
+.sent-negative {
+  background: rgba(255,0,0,0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255,0,0,0.4);
+}
+
+.sent-neutral {
+  background: rgba(255,255,255,0.08);
+  color: #D9E2EC;
+  border: 1px solid rgba(255,255,255,0.2);
+}
