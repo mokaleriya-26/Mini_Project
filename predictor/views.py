@@ -289,9 +289,6 @@ def get_stock_prediction(request, ticker):
         current_seq_scaled = current_seq_scaled.reshape((1, LOOKBACK, 4))
 
         future_sentiment = 0.0  # IMPORTANT FIX
-        # ----- 3. RUN 14-DAY PREDICTION (NEW MODEL) -----
-        print("Running 14-day prediction (multi-output model)...")
-
         # ----- 3. RUN 14-DAY PREDICTION (CORRECT WAY) -----
         print("Running 14-day prediction (multi-output model)...")
 

@@ -49,15 +49,10 @@ async function loadTopCompanies() {
 
     const companies = document.querySelectorAll(".company");
 
-    const liveTitle = document.getElementById("live-title");
-    const livePrice = document.getElementById("live-price");
-    const liveCanvas = document.getElementById("liveChart");
+    let allData = [];   // ✅ MOVED OUTSIDE
 
     try {
 
-        let allData = [];
-
-        // ===== FETCH DATA =====
         for (let i = 0; i < tickers.length; i++) {
 
             const response = await fetch(`/api/predict/${tickers[i]}/`);
@@ -74,20 +69,23 @@ async function loadTopCompanies() {
             const chg = companyCard.querySelector(".chg");
             const info = companyCard.querySelector(".company-info");
 
-            if (tick) tick.innerText =
-                `₹${Number(data.key_stats.last_close).toFixed(3)}`;
+            if (tick)
+                tick.innerText =
+                    `₹${Number(data.key_stats.last_close).toFixed(3)}`;
 
-            if (chg) chg.innerText = "LIVE";
+            if (chg)
+                chg.innerText = "LIVE";
 
             if (info)
                 info.innerText =
                     `Volume: ${Number(data.key_stats.volume).toLocaleString()}`;
         }
 
+        liveDataStore = allData;   // ✅ NOW SAFE
+
     } catch (error) {
         console.error("Error loading top companies:", error);
     }
-    liveDataStore = allData;
 }
 function updateLiveInsight() {
 

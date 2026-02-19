@@ -137,8 +137,9 @@ p.lead{color:rgba(217,226,236,0.85);font-size:1.05rem;margin:8px 0 22px;max-widt
 
 .hero-right.card-mock{
   grid-column: 2/ 3;
-  padding-right: 12px;
-  position: relative; 
+  padding: 12px;
+  position: relative;
+  overflow: visible;   /* important */
 }
 
 /* hero-right card (live mockup) */
@@ -694,31 +695,30 @@ body.signup-page .auth-btn-primary:hover {
     top: 50%;
     transform: translateY(-50%);
 
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: none;
 
     background: rgba(0,0,0,0.6);
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    z-index: 30;
+    z-index: 50;
+    transition: 0.2s ease;
 }
 
-/* LEFT SIDE */
 #prevLive {
-    left: -18px;
+    left: 12px;
 }
 
-/* RIGHT SIDE */
 #nextLive {
-    right: -18px;
+    right: 12px;
 }
 
 .live-arrow:hover {
