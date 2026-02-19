@@ -1,10 +1,11 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>From Tweets To Trades — Dashboard (NIFTY 50)</title>
+  <title>{% trans "From Tweets To Trades — Dashboard (NIFTY 50)" %}</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
@@ -24,34 +25,34 @@
     <div class="brand">
       <div class="logo">T→T</div>
       <div>
-        <h1 class="title">From Tweets To Trades</h1>
-        <div class="subtitle">Select one NIFTY 50 company to generate insights</div>
+        <h1 class="title">{% trans "From Tweets To Trades" %}</h1>
+        <div class="subtitle">{% trans "Select one NIFTY 50 company to generate insights" %}</div>
       </div>
     </div>
-    <a href="{% url 'signout' %}" class="btn btn-ghost" id="signoutBtn">Sign out</a>
+    <a href="{% url 'signout' %}" class="btn btn-ghost" id="signoutBtn">{% trans "Sign out" %}</a>
   </div>
 
   <!-- Layout -->
   <div class="layout">
     <!-- Left Panel -->
     <aside class="panel">
-      <label class="select-label">Choose one company (NIFTY 50)</label>
+      <label class="select-label">{% trans "Choose one company (NIFTY 50)" %}</label>
       <div class="dropdown-wrapper">
         <select id="niftySelect" class="dropdown">
-          <option value="">-- Select a company --</option>
+          <option value="">{% trans "-- Select a company --" %}</option>
         </select>
       </div>
-      <div class="tip">Tip: pick one ticker. Charts and news will update for the selected company.</div>
+      <div class="tip">{% trans "Tip: pick one ticker. Charts and news will update for the selected company." %}</div>
       <div class="controls">
-        <button class="btn btn-primary" id="generateBtn">Generate Insights</button>
+        <button class="btn btn-primary" id="generateBtn">{% trans "Generate Insights" %}</button>
       </div>
     </aside>
 
     <!-- Right Section (for welcome/placeholder) -->
     <section class="right">
       <div class="card" id="placeholderCard">
-        <h3>Welcome!</h3>
-        <div class="muted">Select a NIFTY 50 company to view charts, news, and predictions.</div>
+        <h3>{% trans "Welcome!" %}</h3>
+        <div class="muted">{% trans "Select a NIFTY 50 company to view charts, news, and predictions." %}</div>
       </div>
     </section>
   </div>
@@ -61,40 +62,45 @@
     <!-- Charts Row -->
     <div class="charts-row">
       <div class="card chart-card">
-        <h3>14-Day Price Prediction</h3>
-        <div class="muted">Model: Ensemble • Confidence: <strong id="predConfidence">—</strong></div>
+        <h3>{% trans "14-Day Price Prediction" %}</h3>
+        <div class="muted">
+          {% blocktrans %}
+          Model: Ensemble • Confidence:
+          {% endblocktrans %}
+          <strong id="predConfidence">—</strong>
+        </div>
         <div class="chart-wrap"><canvas id="predChart"></canvas></div>
       </div>
 
       <div class="card chart-card">
-        <h3>Historical Price (Past 30 days)</h3>
-        <div class="muted">Source: sample data</div>
+        <h3>{% trans "Historical Price (Past 30 days)" %}</h3>
+        <div class="muted">{% trans "Source: sample data" %}</div>
         <div class="chart-wrap"><canvas id="histChart"></canvas></div>
       </div>
     </div>
 
     <!-- Predicted Values Grid -->
     <div class="card" id="predCard">
-      <h3>Predicted Values (14 Days)</h3>
-      <div class="muted" style="margin-bottom:8px">Click a tile to highlight</div>
+      <h3>{% trans "Predicted Values (14 Days)" %}</h3>
+      <div class="muted" style="margin-bottom:8px">{% trans "Click a tile to highlight" %}</div>
       <div class="pred-grid" id="predGrid"></div>
     </div>
 
     <!-- News + Stats -->
     <div class="top-cards">
       <div class="card" id="newsCard">
-        <h3 id="newsTitle">Latest News (—)</h3>
+        <h3 id="newsTitle">{% trans "Latest News (—)" %}</h3>
         <div class="news-list" id="newsList"></div>
       </div>
 
       <div class="card" id="statsCard">
-        <h3>Key Stats</h3>
+        <h3>{% trans "Key Stats" %}</h3>
         <table class="stats-table" id="statsTable"></table>
       </div>
     </div>
   </div>
 
-  <div class="footer">Prototype — dropdown uses NIFTY 50 constituents (source: NIFTY / Wikipedia).</div>
+  <div class="footer">{% trans "Prototype — dropdown uses NIFTY 50 constituents (source: NIFTY / Wikipedia)." %}</div>
 </div>
 
 <script src="{% static 'core/analysis.js' %}?v=99"></script>
