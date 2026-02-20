@@ -1,0 +1,567 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-20 14:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: core/templates/analysis.html:8
+msgid "From Tweets To Trades — Dashboard (NIFTY 50)"
+msgstr ""
+
+#: core/templates/analysis.html:28 core/templates/signin.html:19
+msgid "From Tweets To Trades"
+msgstr ""
+
+#: core/templates/analysis.html:29
+msgid "Select one NIFTY 50 company to generate insights"
+msgstr ""
+
+#: core/templates/analysis.html:32
+msgid "Sign out"
+msgstr ""
+
+#: core/templates/analysis.html:39
+msgid "Choose one company (NIFTY 50)"
+msgstr ""
+
+#: core/templates/analysis.html:42
+msgid "-- Select a company --"
+msgstr ""
+
+#: core/templates/analysis.html:45
+msgid ""
+"Tip: pick one ticker. Charts and news will update for the selected company."
+msgstr ""
+
+#: core/templates/analysis.html:47
+msgid "Generate Insights"
+msgstr ""
+
+#: core/templates/analysis.html:54
+msgid "Welcome!"
+msgstr ""
+
+#: core/templates/analysis.html:55
+msgid "Select a NIFTY 50 company to view charts, news, and predictions."
+msgstr ""
+
+#: core/templates/analysis.html:65
+msgid "14-Day Price Prediction"
+msgstr ""
+
+#: core/templates/analysis.html:67
+msgid ""
+"\n"
+"          Model: Ensemble • Confidence:\n"
+"          "
+msgstr ""
+
+#: core/templates/analysis.html:76
+msgid "Historical Price (Past 30 days)"
+msgstr ""
+
+#: core/templates/analysis.html:77
+msgid "Source: sample data"
+msgstr ""
+
+#: core/templates/analysis.html:84
+msgid "Predicted Values (14 Days)"
+msgstr ""
+
+#: core/templates/analysis.html:85
+msgid "Click a tile to highlight"
+msgstr ""
+
+#: core/templates/analysis.html:92
+msgid "Latest News (—)"
+msgstr ""
+
+#: core/templates/analysis.html:97
+msgid "Key Stats"
+msgstr ""
+
+#: core/templates/analysis.html:103
+msgid ""
+"Prototype — dropdown uses NIFTY 50 constituents (source: NIFTY / Wikipedia)."
+msgstr ""
+
+#: core/templates/index.html:9
+msgid "FTTT - Market Alerts"
+msgstr ""
+
+#: core/templates/index.html:31
+msgid "From Tweets"
+msgstr ""
+
+#: core/templates/index.html:32
+msgid "to Trades"
+msgstr ""
+
+#: core/templates/index.html:37 core/templates/index.html:39
+#: core/templates/index.html:219
+msgid "Analysis"
+msgstr ""
+
+#: core/templates/index.html:41
+msgid "Top Companies"
+msgstr ""
+
+#: core/templates/index.html:42
+msgid "How it Works"
+msgstr ""
+
+#: core/templates/index.html:62
+msgid "Sign Out"
+msgstr ""
+
+#: core/templates/index.html:64 core/templates/signin.html:55
+#: core/templates/signup.html:65
+msgid "Sign In"
+msgstr ""
+
+#: core/templates/index.html:65 core/templates/signup.html:60
+msgid "Sign Up"
+msgstr ""
+
+#: core/templates/index.html:74
+msgid "Real-time • AI • Sentiment"
+msgstr ""
+
+#: core/templates/index.html:76
+msgid ""
+"\n"
+"            Never Miss a <span class=\"accent-text\">Market-Moving</"
+"span><br>Moment Again\n"
+"            "
+msgstr ""
+
+#: core/templates/index.html:80
+msgid ""
+"From Tweets to Trades — convert social chatter into real-time trading "
+"signals and market alerts. Trusted by thousands of active traders and "
+"analysts."
+msgstr ""
+
+#: core/templates/index.html:82
+msgid "User Friendly • 5-minute integration"
+msgstr ""
+
+#: core/templates/index.html:90
+msgid "LIVE INSIGHT"
+msgstr ""
+
+#: core/templates/index.html:91
+msgid "Loading..."
+msgstr ""
+
+#: core/templates/index.html:102
+msgid "Market Trend Analysis"
+msgstr ""
+
+#: core/templates/index.html:103
+msgid ""
+"Continuously analyze market data to identify emerging trends and highlight "
+"sectors showing unusual momentum or investor attention."
+msgstr ""
+
+#: core/templates/index.html:107
+msgid "AI-driven Insights"
+msgstr ""
+
+#: core/templates/index.html:108
+msgid ""
+"Proprietary models filter noise and surface high-confidence trade ideas with "
+"sentiment and event scoring."
+msgstr ""
+
+#: core/templates/index.html:112
+msgid "Sentiment Tracking"
+msgstr ""
+
+#: core/templates/index.html:113
+msgid ""
+"Track sentiment trends across sectors and map social momentum to price "
+"movement with clear visualizations."
+msgstr ""
+
+#: core/templates/index.html:118
+msgid "Top Trending Companies"
+msgstr ""
+
+#: core/templates/index.html:119
+msgid "Live social and market movement"
+msgstr ""
+
+#: core/templates/index.html:126
+msgid "HDFC Bank"
+msgstr ""
+
+#: core/templates/index.html:127
+msgid "HDFC . Finance"
+msgstr ""
+
+#: core/templates/index.html:135 core/templates/index.html:151
+#: core/templates/index.html:167 core/templates/index.html:183
+msgid "Data Loading..."
+msgstr ""
+
+#: core/templates/index.html:142
+msgid "Reliance Ind."
+msgstr ""
+
+#: core/templates/index.html:143
+msgid "REL • Technology"
+msgstr ""
+
+#: core/templates/index.html:158
+msgid "TCS"
+msgstr ""
+
+#: core/templates/index.html:159
+msgid "TCS . IT Services"
+msgstr ""
+
+#: core/templates/index.html:174
+msgid "ICICI"
+msgstr ""
+
+#: core/templates/index.html:175
+msgid "ICICI . Finance"
+msgstr ""
+
+#: core/templates/index.html:189
+msgid "From Tweets to Trends — How it works"
+msgstr ""
+
+#: core/templates/index.html:190
+msgid "Raw social chatter → signal processing → trade-ready alerts"
+msgstr ""
+
+#: core/templates/index.html:196
+msgid "Collect"
+msgstr ""
+
+#: core/templates/index.html:197
+msgid ""
+"We ingest tweets, threads, news, Reddit posts and message board chatter in "
+"real time across global feeds."
+msgstr ""
+
+#: core/templates/index.html:203
+msgid "Filter & Classify"
+msgstr ""
+
+#: core/templates/index.html:204
+msgid ""
+"Our NLP pipeline removes bots and noise, classifies event types, and tags "
+"tickers & topics automatically."
+msgstr ""
+
+#: core/templates/index.html:210
+msgid "Score"
+msgstr ""
+
+#: core/templates/index.html:211
+msgid ""
+"Signals are scored for confidence, volume, and sentiment drift. Only high-"
+"impact signals generate alerts."
+msgstr ""
+
+#: core/templates/index.html:220
+msgid ""
+"Takes the historical data and sentiments in account for furhter analysis."
+msgstr ""
+
+#: core/templates/index.html:226
+msgid "Stock Prediction"
+msgstr ""
+
+#: core/templates/index.html:227
+msgid ""
+"After thorough analysis, we can predict the stock price movement and suggest "
+"trades."
+msgstr ""
+
+#: core/templates/index.html:233
+msgid "Visualizations"
+msgstr ""
+
+#: core/templates/index.html:234
+msgid ""
+"See trend timelines, sentiment heatmaps, ad correlation views to validate "
+"ideas before trading."
+msgstr ""
+
+#: core/templates/index.html:244
+msgid "Ready to turn chatter into alpha?"
+msgstr ""
+
+#: core/templates/index.html:245
+msgid "Start a free trial — get alerts for your watchlist in minutes."
+msgstr ""
+
+#: core/templates/index.html:250
+msgid "Start Free Trial"
+msgstr ""
+
+#: core/templates/index.html:254 core/templates/signup.html:18
+msgid "From Tweets to Trades"
+msgstr ""
+
+#: core/templates/index.html:256 core/templates/privacy_policy.html:8
+#: core/templates/privacy_policy.html:75
+msgid "Privacy Policy"
+msgstr ""
+
+#: core/templates/index.html:257
+msgid "Terms of Service"
+msgstr ""
+
+#: core/templates/privacy_policy.html:76
+#: core/templates/terms_of_service.html:77
+msgid "Last updated: February 2026"
+msgstr ""
+
+#: core/templates/privacy_policy.html:77
+msgid "1. Information We Collect"
+msgstr ""
+
+#: core/templates/privacy_policy.html:79
+msgid ""
+"We may collect basic account information such as your name, email address, "
+"and login credentials when you register on our platform."
+msgstr ""
+
+#: core/templates/privacy_policy.html:81
+msgid "2. How We Use Your Information"
+msgstr ""
+
+#: core/templates/privacy_policy.html:83
+msgid ""
+"Your information is used to provide stock analysis services, improve user "
+"experience, generate insights, and communicate important updates."
+msgstr ""
+
+#: core/templates/privacy_policy.html:85
+msgid "3. Data Security"
+msgstr ""
+
+#: core/templates/privacy_policy.html:87
+msgid ""
+"We implement appropriate security measures to protect your data from "
+"unauthorized access, alteration, or disclosure."
+msgstr ""
+
+#: core/templates/privacy_policy.html:89
+msgid "4. Third-Party Services"
+msgstr ""
+
+#: core/templates/privacy_policy.html:91
+msgid ""
+"Our platform may use third-party APIs such as market data providers. We are "
+"not responsible for their privacy practices."
+msgstr ""
+
+#: core/templates/privacy_policy.html:93
+msgid "5. Cookies"
+msgstr ""
+
+#: core/templates/privacy_policy.html:95
+msgid ""
+"We may use cookies to enhance user experience and maintain session "
+"authentication."
+msgstr ""
+
+#: core/templates/privacy_policy.html:97
+msgid "6. Changes to This Policy"
+msgstr ""
+
+#: core/templates/privacy_policy.html:99
+msgid ""
+"We may update this Privacy Policy from time to time. Changes will be "
+"reflected on this page."
+msgstr ""
+
+#: core/templates/privacy_policy.html:101
+msgid "7. Contact Us"
+msgstr ""
+
+#: core/templates/privacy_policy.html:103
+msgid ""
+"If you have any questions regarding this Privacy Policy, please contact us "
+"through the platform."
+msgstr ""
+
+#: core/templates/privacy_policy.html:105 core/templates/signin.html:64
+#: core/templates/signup.html:67 core/templates/terms_of_service.html:114
+msgid "Back to Home"
+msgstr ""
+
+#: core/templates/signin.html:8
+msgid "FTTT – Sign In"
+msgstr ""
+
+#: core/templates/signin.html:29
+msgid "Welcome Back"
+msgstr ""
+
+#: core/templates/signin.html:38
+msgid "Sign in with Google"
+msgstr ""
+
+#: core/templates/signin.html:41
+msgid "— or sign in with email —"
+msgstr ""
+
+#: core/templates/signin.html:46 core/templates/signup.html:50
+msgid "Email Address"
+msgstr ""
+
+#: core/templates/signin.html:51 core/templates/signup.html:55
+msgid "Password"
+msgstr ""
+
+#: core/templates/signin.html:59
+#, python-format
+msgid ""
+"\n"
+"            Don’t have an account?\n"
+"            <a href=\"%(signup_url)s\">Sign Up</a>\n"
+"          "
+msgstr ""
+
+#: core/templates/signup.html:8
+msgid "FTTT – Sign Up"
+msgstr ""
+
+#: core/templates/signup.html:28
+msgid "Create Your Account"
+msgstr ""
+
+#: core/templates/signup.html:37
+msgid "Sign Up with Google"
+msgstr ""
+
+#: core/templates/signup.html:40
+msgid "— or sign up with email —"
+msgstr ""
+
+#: core/templates/signup.html:45
+msgid "Full Name"
+msgstr ""
+
+#: core/templates/signup.html:46
+msgid "Enter your full name"
+msgstr ""
+
+#: core/templates/signup.html:56
+msgid "Must be 8+ characters"
+msgstr ""
+
+#: core/templates/signup.html:64
+msgid "Already have an account?"
+msgstr ""
+
+#: core/templates/terms_of_service.html:8
+#: core/templates/terms_of_service.html:76
+msgid "Terms & Conditions"
+msgstr ""
+
+#: core/templates/terms_of_service.html:79
+msgid "1. Acceptance of Terms"
+msgstr ""
+
+#: core/templates/terms_of_service.html:81
+msgid ""
+"By accessing and using this platform, you agree to comply with these Terms & "
+"Conditions."
+msgstr ""
+
+#: core/templates/terms_of_service.html:84
+msgid "2. Educational Purpose Only"
+msgstr ""
+
+#: core/templates/terms_of_service.html:86
+msgid ""
+"All stock predictions, sentiment scores, and analytics provided on this "
+"platform are for educational and informational purposes only."
+msgstr ""
+
+#: core/templates/terms_of_service.html:89
+msgid "3. No Financial Advice"
+msgstr ""
+
+#: core/templates/terms_of_service.html:91
+msgid ""
+"We do not provide financial, investment, or trading advice. Users are "
+"responsible for their own investment decisions."
+msgstr ""
+
+#: core/templates/terms_of_service.html:94
+msgid "4. User Responsibilities"
+msgstr ""
+
+#: core/templates/terms_of_service.html:96
+msgid ""
+"Users must provide accurate information during registration and maintain the "
+"confidentiality of their account credentials."
+msgstr ""
+
+#: core/templates/terms_of_service.html:99
+msgid "5. Limitation of Liability"
+msgstr ""
+
+#: core/templates/terms_of_service.html:101
+msgid ""
+"We are not liable for any financial losses or damages resulting from the use "
+"of this platform."
+msgstr ""
+
+#: core/templates/terms_of_service.html:104
+msgid "6. Modifications"
+msgstr ""
+
+#: core/templates/terms_of_service.html:106
+msgid ""
+"We reserve the right to modify or discontinue any part of the platform at "
+"any time without notice."
+msgstr ""
+
+#: core/templates/terms_of_service.html:109
+msgid "7. Governing Law"
+msgstr ""
+
+#: core/templates/terms_of_service.html:111
+msgid ""
+"These terms shall be governed by applicable laws of the jurisdiction in "
+"which the platform operates."
+msgstr ""
+
+#: fttt_project/settings.py:118
+msgid "English"
+msgstr ""
+
+#: fttt_project/settings.py:119
+msgid "Hindi"
+msgstr ""
+
+#: fttt_project/settings.py:120
+msgid "Marathi"
+msgstr ""
+
+#: fttt_project/settings.py:121
+msgid "Malayalam"
+msgstr ""

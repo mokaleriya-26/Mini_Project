@@ -118,6 +118,7 @@ LANGUAGES = [
     ('en', _('English')),
     ('hi', _('Hindi')),
     ('mr', _('Marathi')),
+    ('ml', _('Malayalam')),
 ]
 
 LOCALE_PATHS = [
