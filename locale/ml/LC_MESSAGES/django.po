@@ -19,48 +19,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: core/templates/analysis.html:8
 msgid "From Tweets To Trades — Dashboard (NIFTY 50)"
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന് ട്രേഡുകളിലേക്ക് — ഡാഷ്ബോർഡ് (നിഫ്റ്റി 50)"
 
 #: core/templates/analysis.html:28 core/templates/signin.html:19
 msgid "From Tweets To Trades"
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന് ട്രേഡുകളിലേക്ക്"
 
 #: core/templates/analysis.html:29
 msgid "Select one NIFTY 50 company to generate insights"
-msgstr ""
+msgstr "അവലോകനങ്ങൾ സൃഷ്ടിക്കാൻ ഒരു നിഫ്റ്റി 50 കമ്പനി തിരഞ്ഞെടുക്കുക"
 
 #: core/templates/analysis.html:32
 msgid "Sign out"
-msgstr ""
+msgstr "സൈൻ ഔട്ട്"
 
 #: core/templates/analysis.html:39
 msgid "Choose one company (NIFTY 50)"
-msgstr ""
+msgstr "ഒരു കമ്പനി തിരഞ്ഞെടുക്കുക (നിഫ്റ്റി 50)"
 
 #: core/templates/analysis.html:42
 msgid "-- Select a company --"
-msgstr ""
+msgstr "-- ഒരു കമ്പനി തിരഞ്ഞെടുക്കുക --"
 
 #: core/templates/analysis.html:45
 msgid ""
 "Tip: pick one ticker. Charts and news will update for the selected company."
-msgstr ""
+msgstr "ടിപ്പ്: ഒരു ടിക്കർ മാത്രം തിരഞ്ഞെടുക്കുക. തിരഞ്ഞെടുക്കുന്ന കമ്പനിക്കായി ചാർട്ടുകളും വാർത്തകളും കാണിക്കപ്പെടും."
 
 #: core/templates/analysis.html:47
 msgid "Generate Insights"
-msgstr ""
+msgstr "അവലോകനങ്ങൾ സൃഷ്ടിക്കുക"
 
 #: core/templates/analysis.html:54
 msgid "Welcome!"
-msgstr ""
+msgstr "സ്വാഗതം!"
 
 #: core/templates/analysis.html:55
 msgid "Select a NIFTY 50 company to view charts, news, and predictions."
-msgstr ""
+msgstr "ചാർട്ടുകൾ, വാർത്തകൾ, പ്രവചനങ്ങൾ കാണാൻ ഒരു നിഫ്റ്റി 50 കമ്പനി തിരഞ്ഞെടുക്കുക."
 
 #: core/templates/analysis.html:65
 msgid "14-Day Price Prediction"
-msgstr ""
+msgstr "14 ദിവസത്തെ വില പ്രവചനം"
 
 #: core/templates/analysis.html:67
 msgid ""
@@ -68,77 +68,80 @@ msgid ""
 "          Model: Ensemble • Confidence:\n"
 "          "
 msgstr ""
+"\n"
+"          മോഡൽ: എൻസെംബിൾ • ആത്മവിശ്വാസം:\n"
+"          "
 
 #: core/templates/analysis.html:76
 msgid "Historical Price (Past 30 days)"
-msgstr ""
+msgstr "ചരിത്ര വില (കഴിഞ്ഞ 30 ദിവസം)"
 
 #: core/templates/analysis.html:77
 msgid "Source: sample data"
-msgstr ""
+msgstr "ഉറവിടം: സാമ്പിൾ ഡാറ്റ"
 
 #: core/templates/analysis.html:84
 msgid "Predicted Values (14 Days)"
-msgstr ""
+msgstr "പ്രവചിച്ച മൂല്യങ്ങൾ (14 ദിവസം)"
 
 #: core/templates/analysis.html:85
 msgid "Click a tile to highlight"
-msgstr ""
+msgstr "ഹൈലൈറ്റ് ചെയ്യാൻ ഒരു ടൈലിൽ ക്ലിക്ക് ചെയ്യുക."
 
 #: core/templates/analysis.html:92
 msgid "Latest News (—)"
-msgstr ""
+msgstr "പുതിയ വാർത്തകൾ (—)"
 
 #: core/templates/analysis.html:97
 msgid "Key Stats"
-msgstr ""
+msgstr "പ്രധാന കണക്ക് വിവരങ്ങൾ"
 
 #: core/templates/analysis.html:103
 msgid ""
 "Prototype — dropdown uses NIFTY 50 constituents (source: NIFTY / Wikipedia)."
-msgstr ""
+msgstr "പ്രോട്ടോടൈപ്പ് — ഡ്രോപ്പ്‌ഡൗൺ NIFTY 50യിലെ കമ്പനികളുടെ പട്ടിക (ഉറവിടം: NIFTY / Wikipedia) ഉപയോഗിക്കുന്നു."
 
 #: core/templates/index.html:9
 msgid "FTTT - Market Alerts"
-msgstr ""
+msgstr "FTTT - മാർക്കറ്റ് അലർട്ടുകൾ"
 
 #: core/templates/index.html:31
 msgid "From Tweets"
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന്"
 
 #: core/templates/index.html:32
 msgid "to Trades"
-msgstr ""
+msgstr "ട്രേഡുകളിലേക്ക്"
 
 #: core/templates/index.html:37 core/templates/index.html:39
 #: core/templates/index.html:219
 msgid "Analysis"
-msgstr ""
+msgstr "വിശകലനം"
 
 #: core/templates/index.html:41
 msgid "Top Companies"
-msgstr ""
+msgstr "മികച്ച കമ്പനികൾ"
 
 #: core/templates/index.html:42
 msgid "How it Works"
-msgstr ""
+msgstr "ഇത് എങ്ങനെ പ്രവർത്തിക്കുന്നു"
 
 #: core/templates/index.html:62
 msgid "Sign Out"
-msgstr ""
+msgstr "സൈൻ ഔട്ട്"
 
 #: core/templates/index.html:64 core/templates/signin.html:55
 #: core/templates/signup.html:65
 msgid "Sign In"
-msgstr ""
+msgstr "സൈൻ ഇൻ"
 
 #: core/templates/index.html:65 core/templates/signup.html:60
 msgid "Sign Up"
-msgstr ""
+msgstr "സൈൻ അപ്പ്"
 
 #: core/templates/index.html:74
 msgid "Real-time • AI • Sentiment"
-msgstr ""
+msgstr "റിയൽ-ടൈം • എഐ • സെന്റിമെന്റ്"
 
 #: core/templates/index.html:76
 msgid ""
@@ -147,292 +150,296 @@ msgid ""
 "span><br>Moment Again\n"
 "            "
 msgstr ""
+"\n"
+"            ഒരു <span class=\"accent-text\">മാർക്കറ്റ് മാറ്റം സൃഷ്ടിക്കുന്ന</"
+"span><br>ക്ഷണവും ഇനി നഷ്ടപ്പെടരുത്\n
+"            "
 
 #: core/templates/index.html:80
 msgid ""
 "From Tweets to Trades — convert social chatter into real-time trading "
 "signals and market alerts. Trusted by thousands of active traders and "
 "analysts."
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന് ട്രേഡുകളിലേക്ക് — സോഷ്യൽ മീഡിയയിലെ ചർച്ചകളെ റിയൽ-ടൈം ട്രേഡിംഗ് സിഗ്നലുകളും മാർക്കറ്റ് അലർട്ടുകളും ആക്കി മാറ്റുക. ആയിരക്കണക്കിന് സജീവ ട്രേഡർമാരും വിശകലന വിദഗ്ധരും വിശ്വസിക്കുന്ന സേവനം."
 
 #: core/templates/index.html:82
 msgid "User Friendly • 5-minute integration"
-msgstr ""
+msgstr "ഉപയോഗിക്കാൻ എളുപ്പം • 5 മിനിറ്റിൽ സംയോജനം"
 
 #: core/templates/index.html:90
 msgid "LIVE INSIGHT"
-msgstr ""
+msgstr "ലൈവ് ഇൻസൈറ്റ്"
 
 #: core/templates/index.html:91
 msgid "Loading..."
-msgstr ""
+msgstr "ലോഡുചെയ്യുന്നു..."
 
 #: core/templates/index.html:102
 msgid "Market Trend Analysis"
-msgstr ""
+msgstr "മാർക്കറ്റ് ട്രെൻഡ് വിശകലനം"
 
 #: core/templates/index.html:103
 msgid ""
 "Continuously analyze market data to identify emerging trends and highlight "
 "sectors showing unusual momentum or investor attention."
-msgstr ""
+msgstr "ഉയർന്ന് വരുന്ന പ്രവണതകൾ കണ്ടെത്താനും നിക്ഷേപകരുടെ ശ്രദ്ധ ആകർഷിക്കുന്ന മേഖലകൾ വ്യക്തമാക്കാനും വിപണി ഡാറ്റ തുടർച്ചയായി വിശകലനം ചെയ്യുന്നു."
 
 #: core/templates/index.html:107
 msgid "AI-driven Insights"
-msgstr ""
+msgstr "എഐ നിയന്ത്രിത അവലോകനങ്ങൾ"
 
 #: core/templates/index.html:108
 msgid ""
 "Proprietary models filter noise and surface high-confidence trade ideas with "
 "sentiment and event scoring."
-msgstr ""
+msgstr "സ്വകാര്യ മോഡലുകൾ അനാവശ്യ വിവരങ്ങൾ നീക്കം ചെയ്ത്, സെന്റിമെന്റും ഇവന്റ് വിലയിരുത്തലും അടിസ്ഥാനമാക്കി വിശ്വാസ്യതയുള്ള ട്രേഡ് ആശയങ്ങൾ അവതരിപ്പിക്കുന്നു."
 
 #: core/templates/index.html:112
 msgid "Sentiment Tracking"
-msgstr ""
+msgstr "സെന്റിമെന്റ് ട്രാക്കിംഗ്"
 
 #: core/templates/index.html:113
 msgid ""
 "Track sentiment trends across sectors and map social momentum to price "
 "movement with clear visualizations."
-msgstr ""
+msgstr "വിവിധ മേഖലകളിലെ സെന്റിമെന്റ് പ്രവണതകൾ നിരീക്ഷിച്ച്, സോഷ്യൽ മോമെന്റത്തെ വില മാറ്റങ്ങളുമായി വ്യക്തമായ ഗ്രാഫുകൾ വഴി ബന്ധിപ്പിക്കുക."
 
 #: core/templates/index.html:118
 msgid "Top Trending Companies"
-msgstr ""
+msgstr "ട്രെൻഡിംഗ് മികച്ച കമ്പനികൾ"
 
 #: core/templates/index.html:119
 msgid "Live social and market movement"
-msgstr ""
+msgstr "തത്സമയ സോഷ്യൽ മീഡിയയും വിപണി ചലനങ്ങളും"
 
 #: core/templates/index.html:126
 msgid "HDFC Bank"
-msgstr ""
+msgstr "HDFC ബാങ്ക്"
 
 #: core/templates/index.html:127
 msgid "HDFC . Finance"
-msgstr ""
+msgstr "HDFC . ഫിനാൻസ്"
 
 #: core/templates/index.html:135 core/templates/index.html:151
 #: core/templates/index.html:167 core/templates/index.html:183
 msgid "Data Loading..."
-msgstr ""
+msgstr "ഡാറ്റ ലോഡുചെയ്യുന്നു..."
 
 #: core/templates/index.html:142
 msgid "Reliance Ind."
-msgstr ""
+msgstr "റിലയൻസ് ഇൻഡസ്ട്രീസ്"
 
 #: core/templates/index.html:143
 msgid "REL • Technology"
-msgstr ""
+msgstr "REL • ടെക്‌നോളജി"
 
 #: core/templates/index.html:158
 msgid "TCS"
-msgstr ""
+msgstr "ടിസിഎസ്"
 
 #: core/templates/index.html:159
 msgid "TCS . IT Services"
-msgstr ""
+msgstr "ടിസിഎസ് • ഐടി സർവീസുകൾ"
 
 #: core/templates/index.html:174
 msgid "ICICI"
-msgstr ""
+msgstr "ഐസിഐസിഐ"
 
 #: core/templates/index.html:175
 msgid "ICICI . Finance"
-msgstr ""
+msgstr "ഐസിഐസിഐ • ഫിനാൻസ്"
 
 #: core/templates/index.html:189
 msgid "From Tweets to Trends — How it works"
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന് ട്രെൻഡുകളിലേക്ക് — പ്രവർത്തന രീതി"
 
 #: core/templates/index.html:190
 msgid "Raw social chatter → signal processing → trade-ready alerts"
-msgstr ""
+msgstr "സോഷ്യൽ മീഡിയയിലെ അസംസ്കൃത ചർച്ചകൾ → സിഗ്നൽ വിശകലനം → ട്രേഡിംഗിന് തയ്യാറായ അലർട്ടുകൾ"
 
 #: core/templates/index.html:196
 msgid "Collect"
-msgstr ""
+msgstr "ശേഖരിക്കുക"
 
 #: core/templates/index.html:197
 msgid ""
 "We ingest tweets, threads, news, Reddit posts and message board chatter in "
 "real time across global feeds."
-msgstr ""
+msgstr "ലോകമെമ്പാടുമുള്ള ഫീഡുകളിൽ നിന്ന് ട്വീറ്റുകൾ, വാർത്തകൾ, റെഡിറ്റ് പോസ്റ്റുകൾ, മറ്റ് ഓൺലൈൻ ചർച്ചകൾ എന്നിവ തത്സമയം ശേഖരിക്കുന്നു."
 
 #: core/templates/index.html:203
 msgid "Filter & Classify"
-msgstr ""
+msgstr "ഫിൽട്ടർ ചെയ്ത് വർഗ്ഗീകരിക്കുക"
 
 #: core/templates/index.html:204
 msgid ""
 "Our NLP pipeline removes bots and noise, classifies event types, and tags "
 "tickers & topics automatically."
-msgstr ""
+msgstr "ഞങ്ങളുടെ NLP പൈപ്പ്‌ലൈൻ ബോട്ടുകളും അനാവശ്യ ശബ്ദവും നീക്കം ചെയ്ത്, ഇവന്റ് തരങ്ങൾ വർഗ്ഗീകരിക്കുകയും ടിക്കറുകളും വിഷയങ്ങളും സ്വയമേവ ടാഗ് ചെയ്യുകയും ചെയ്യുന്നു."
 
 #: core/templates/index.html:210
 msgid "Score"
-msgstr ""
+msgstr "സ്കോർ"
 
 #: core/templates/index.html:211
 msgid ""
 "Signals are scored for confidence, volume, and sentiment drift. Only high-"
 "impact signals generate alerts."
-msgstr ""
+msgstr "സിഗ്നലുകൾ വിശ്വാസ്യത, വോള്യം, സെന്റിമെന്റ് മാറ്റം എന്നിവയുടെ അടിസ്ഥാനത്തിൽ സ്കോർ ചെയ്യപ്പെടുന്നു. ഉയർന്ന സ്വാധീനമുള്ള സിഗ്നലുകൾക്ക് മാത്രമാണ് അലർട്ടുകൾ സൃഷ്ടിക്കപ്പെടുന്നത്."
 
 #: core/templates/index.html:220
 msgid ""
 "Takes the historical data and sentiments in account for furhter analysis."
-msgstr ""
+msgstr "കൂടുതൽ വിശകലനത്തിനായി ചരിത്ര ഡാറ്റയും സെന്റിമെന്റും പരിഗണിക്കുന്നു."
 
 #: core/templates/index.html:226
 msgid "Stock Prediction"
-msgstr ""
+msgstr "ഓഹരി പ്രവചനം"
 
 #: core/templates/index.html:227
 msgid ""
 "After thorough analysis, we can predict the stock price movement and suggest "
 "trades."
-msgstr ""
+msgstr "വിശദമായ വിശകലനത്തിന് ശേഷം, ഓഹരി വിലയുടെ മാറ്റങ്ങൾ പ്രവചിച്ച് അനുയോജ്യമായ ട്രേഡുകൾ നിർദേശിക്കുന്നു."
 
 #: core/templates/index.html:233
 msgid "Visualizations"
-msgstr ""
+msgstr "ദൃശ്യവൽക്കരണം"
 
 #: core/templates/index.html:234
 msgid ""
 "See trend timelines, sentiment heatmaps, ad correlation views to validate "
 "ideas before trading."
-msgstr ""
+msgstr "ട്രേഡിംഗിന് മുമ്പ് ആശയങ്ങൾ സ്ഥിരീകരിക്കാൻ ട്രെൻഡ് ടൈംലൈൻകൾ, സെന്റിമെന്റ് ഹീറ്റ്‌മാപ്പുകൾ, കൂടാതെ സഹബന്ധ (കോറലേഷൻ) ദൃശ്യങ്ങൾ പരിശോധിക്കുക."
 
 #: core/templates/index.html:244
 msgid "Ready to turn chatter into alpha?"
-msgstr ""
+msgstr "സോഷ്യൽ ചർച്ചകളെ ലാഭസാധ്യതയായ ആൽഫയാക്കി മാറ്റാൻ തയ്യാറാണോ?"
 
 #: core/templates/index.html:245
 msgid "Start a free trial — get alerts for your watchlist in minutes."
-msgstr ""
+msgstr "സൗജന്യ പരീക്ഷണം ആരംഭിക്കുക — നിങ്ങളുടെ വാച്ച്‌ലിസ്റ്റിലെ ഓഹരികൾക്കായി ഏതാനും മിനിറ്റുകൾക്കകം അലർട്ടുകൾ നേടൂ."
 
 #: core/templates/index.html:250
 msgid "Start Free Trial"
-msgstr ""
+msgstr "സൗജന്യ പരീക്ഷണം ആരംഭിക്കുക"
 
 #: core/templates/index.html:254 core/templates/signup.html:18
 msgid "From Tweets to Trades"
-msgstr ""
+msgstr "ട്വീറ്റുകളിൽ നിന്ന് ട്രേഡുകളിലേക്ക്"
 
 #: core/templates/index.html:256 core/templates/privacy_policy.html:8
 #: core/templates/privacy_policy.html:75
 msgid "Privacy Policy"
-msgstr ""
+msgstr "സ്വകാര്യതാ നയം"
 
 #: core/templates/index.html:257
 msgid "Terms of Service"
-msgstr ""
+msgstr "സേവന നിബന്ധനകൾ"
 
 #: core/templates/privacy_policy.html:76
 #: core/templates/terms_of_service.html:77
 msgid "Last updated: February 2026"
-msgstr ""
+msgstr "അവസാനമായി പുതുക്കിയത്: ഫെബ്രുവരി 2026"
 
 #: core/templates/privacy_policy.html:77
 msgid "1. Information We Collect"
-msgstr ""
+msgstr "1. ഞങ്ങൾ ശേഖരിക്കുന്ന വിവരങ്ങൾ"
 
 #: core/templates/privacy_policy.html:79
 msgid ""
 "We may collect basic account information such as your name, email address, "
 "and login credentials when you register on our platform."
-msgstr ""
+msgstr "ഞങ്ങളുടെ പ്ലാറ്റ്ഫോമിൽ രജിസ്റ്റർ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പേര്, ഇമെയിൽ വിലാസം, ലോഗിൻ വിവരങ്ങൾ തുടങ്ങിയ അടിസ്ഥാന അക്കൗണ്ട് വിവരങ്ങൾ ഞങ്ങൾ ശേഖരിക്കുന്നു."
 
 #: core/templates/privacy_policy.html:81
 msgid "2. How We Use Your Information"
-msgstr ""
+msgstr "2. നിങ്ങളുടെ വിവരങ്ങൾ ഞങ്ങൾ എങ്ങനെ ഉപയോഗിക്കുന്നു"
 
 #: core/templates/privacy_policy.html:83
 msgid ""
 "Your information is used to provide stock analysis services, improve user "
 "experience, generate insights, and communicate important updates."
-msgstr ""
+msgstr "ഓഹരി വിശകലന സേവനങ്ങൾ നൽകുന്നതിനും, ഉപയോക്തൃ അനുഭവം മെച്ചപ്പെടുത്തുന്നതിനും, ഉൾക്കാഴ്ചകൾ സൃഷ്ടിക്കുന്നതിനും, പ്രധാനപ്പെട്ട അപ്‌ഡേറ്റുകൾ അറിയിക്കുന്നതിനും നിങ്ങളുടെ വിവരങ്ങൾ ഉപയോഗിക്കുന്നു."
 
 #: core/templates/privacy_policy.html:85
 msgid "3. Data Security"
-msgstr ""
+msgstr "3. വിവരസുരക്ഷ"
 
 #: core/templates/privacy_policy.html:87
 msgid ""
 "We implement appropriate security measures to protect your data from "
 "unauthorized access, alteration, or disclosure."
-msgstr ""
+msgstr "അനധികൃത പ്രവേശനം, മാറ്റം, അല്ലെങ്കിൽ വെളിപ്പെടുത്തൽ എന്നിവയിൽ നിന്ന് നിങ്ങളുടെ ഡാറ്റ സംരക്ഷിക്കാൻ അനുയോജ്യമായ സുരക്ഷാ നടപടികൾ ഞങ്ങൾ നടപ്പിലാക്കുന്നു."
 
 #: core/templates/privacy_policy.html:89
 msgid "4. Third-Party Services"
-msgstr ""
+msgstr "4.⁠ ⁠മൂന്നാംകക്ഷി സേവനങ്ങൾ"
 
 #: core/templates/privacy_policy.html:91
 msgid ""
 "Our platform may use third-party APIs such as market data providers. We are "
 "not responsible for their privacy practices."
-msgstr ""
+msgstr "ഞങ്ങളുടെ പ്ലാറ്റ്ഫോം മാർക്കറ്റ് ഡാറ്റ പ്രൊവൈഡർമാർ പോലുള്ള മൂന്നാംകക്ഷി APIകൾ ഉപയോഗിക്കാം. അവരുടെ സ്വകാര്യതാ നടപടികൾക്കായി ഞങ്ങൾ ഉത്തരവാദികളല്ല."
 
 #: core/templates/privacy_policy.html:93
 msgid "5. Cookies"
-msgstr ""
+msgstr "5. കുക്കീസ്"
 
 #: core/templates/privacy_policy.html:95
 msgid ""
 "We may use cookies to enhance user experience and maintain session "
 "authentication."
-msgstr ""
+msgstr "ഉപയോക്തൃ അനുഭവം മെച്ചപ്പെടുത്താനും സെഷൻ ഓതന്റിക്കേഷൻ നിലനിർത്താനും ഞങ്ങൾ കുക്കികൾ ഉപയോഗിക്കാം."
 
 #: core/templates/privacy_policy.html:97
 msgid "6. Changes to This Policy"
-msgstr ""
+msgstr "6. ഈ നയത്തിലെ മാറ്റങ്ങൾ"
 
 #: core/templates/privacy_policy.html:99
 msgid ""
 "We may update this Privacy Policy from time to time. Changes will be "
 "reflected on this page."
-msgstr ""
+msgstr "ഈ സ്വകാര്യതാ നയം ഞങ്ങൾ സമയാസമയങ്ങളിൽ പുതുക്കാം. മാറ്റങ്ങൾ ഈ പേജിൽ പ്രതിഫലിക്കും."
 
 #: core/templates/privacy_policy.html:101
 msgid "7. Contact Us"
-msgstr ""
+msgstr "7. ഞങ്ങളെ ബന്ധപ്പെടുക"
 
 #: core/templates/privacy_policy.html:103
 msgid ""
 "If you have any questions regarding this Privacy Policy, please contact us "
 "through the platform."
-msgstr ""
+msgstr "ഈ സ്വകാര്യതാ നയവുമായി ബന്ധപ്പെട്ട് നിങ്ങൾക്ക് എന്തെങ്കിലും ചോദ്യങ്ങൾ ഉണ്ടെങ്കിൽ, ദയവായി പ്ലാറ്റ്ഫോം വഴി ഞങ്ങളെ ബന്ധപ്പെടുക."
 
 #: core/templates/privacy_policy.html:105 core/templates/signin.html:64
 #: core/templates/signup.html:67 core/templates/terms_of_service.html:114
 msgid "Back to Home"
-msgstr ""
+msgstr "ഹോം പേജിലേക്ക് മടങ്ങുക"
 
 #: core/templates/signin.html:8
 msgid "FTTT – Sign In"
-msgstr ""
+msgstr "FTTT – സൈൻ ഇൻ"
 
 #: core/templates/signin.html:29
 msgid "Welcome Back"
-msgstr ""
+msgstr "വീണ്ടും സ്വാഗതം"
 
 #: core/templates/signin.html:38
 msgid "Sign in with Google"
-msgstr ""
+msgstr "ഗൂഗിളിലൂടെ സൈൻ ഇൻ ചെയ്യുക"
 
 #: core/templates/signin.html:41
-msgid "— or sign in with email —"
-msgstr ""
+msgid "FTTT –Sign In"
+msgstr "FTTT – സൈൻ ഇൻ"
 
 #: core/templates/signin.html:46 core/templates/signup.html:50
 msgid "Email Address"
-msgstr ""
+msgstr "ഇമെയിൽ വിലാസം"
 
 #: core/templates/signin.html:51 core/templates/signup.html:55
 msgid "Password"
-msgstr ""
+msgstr "പാസ്‌വേഡ്"
 
 #: core/templates/signin.html:59
 #, python-format
@@ -442,126 +449,130 @@ msgid ""
 "            <a href=\"%(signup_url)s\">Sign Up</a>\n"
 "          "
 msgstr ""
+"\n"
+"            അക്കൗണ്ട് ഇല്ലേ?\n"
+"            <a href=\"%(signup_url)s\">സൈൻ അപ്പ് ചെയ്യുക</a>\n"
+"          "
 
 #: core/templates/signup.html:8
 msgid "FTTT – Sign Up"
-msgstr ""
+msgstr "FTTT – സൈൻ അപ്പ്"
 
 #: core/templates/signup.html:28
 msgid "Create Your Account"
-msgstr ""
+msgstr "നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കുക"
 
 #: core/templates/signup.html:37
 msgid "Sign Up with Google"
-msgstr ""
+msgstr "ഗൂഗിള്‍ ഉപയോഗിച്ച് സൈൻ അപ്പ് ചെയ്യുക"
 
 #: core/templates/signup.html:40
 msgid "— or sign up with email —"
-msgstr ""
+msgstr "— അല്ലെങ്കിൽ ഇമെയിൽ ഉപയോഗിച്ച് സൈൻ അപ്പ് ചെയ്യുക —"
 
 #: core/templates/signup.html:45
 msgid "Full Name"
-msgstr ""
+msgstr "പൂർണ്ണ പേര്"
 
 #: core/templates/signup.html:46
 msgid "Enter your full name"
-msgstr ""
+msgstr "നിങ്ങളുടെ പൂർണ്ണ പേര് നൽകുക"
 
 #: core/templates/signup.html:56
 msgid "Must be 8+ characters"
-msgstr ""
+msgstr "കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ വേണം"
 
 #: core/templates/signup.html:64
 msgid "Already have an account?"
-msgstr ""
+msgstr "ഇതിനകം ഒരു അക്കൗണ്ട് ഉണ്ടോ?"
 
 #: core/templates/terms_of_service.html:8
 #: core/templates/terms_of_service.html:76
 msgid "Terms & Conditions"
-msgstr ""
+msgstr "നിബന്ധനകളും വ്യവസ്ഥകളും"
 
 #: core/templates/terms_of_service.html:79
 msgid "1. Acceptance of Terms"
-msgstr ""
+msgstr "1. നിബന്ധനകളുടെ അംഗീകാരം"
 
 #: core/templates/terms_of_service.html:81
 msgid ""
 "By accessing and using this platform, you agree to comply with these Terms & "
 "Conditions."
-msgstr ""
+msgstr "ഈ പ്ലാറ്റ്ഫോം ഉപയോഗിക്കുന്നതിലൂടെ, ഈ നിബന്ധനകളും വ്യവസ്ഥകളും പാലിക്കാൻ നിങ്ങൾ സമ്മതിക്കുന്നു."
 
 #: core/templates/terms_of_service.html:84
 msgid "2. Educational Purpose Only"
-msgstr ""
+msgstr "2. വിദ്യാഭ്യാസ ആവശ്യങ്ങൾക്ക് മാത്രം"
 
 #: core/templates/terms_of_service.html:86
 msgid ""
 "All stock predictions, sentiment scores, and analytics provided on this "
 "platform are for educational and informational purposes only."
-msgstr ""
+msgstr "ഈ പ്ലാറ്റ്ഫോമിൽ നൽകുന്ന എല്ലാ ഓഹരി പ്രവചനങ്ങളും, സെന്റിമെന്റ് സ്കോറുകളും, വിശകലനങ്ങളും വിദ്യാഭ്യാസവും വിവരാവശ്യങ്ങൾക്കുമാത്രമാണ്."
 
 #: core/templates/terms_of_service.html:89
 msgid "3. No Financial Advice"
-msgstr ""
+msgstr "3. സാമ്പത്തിക ഉപദേശം അല്ല"
 
 #: core/templates/terms_of_service.html:91
 msgid ""
 "We do not provide financial, investment, or trading advice. Users are "
 "responsible for their own investment decisions."
-msgstr ""
+msgstr "ഞങ്ങൾ സാമ്പത്തിക, നിക്ഷേപ, അല്ലെങ്കിൽ ട്രേഡിംഗ് ഉപദേശം നൽകുന്നില്ല. ഉപയോക്താക്കൾ അവരുടെ നിക്ഷേപ തീരുമാനങ്ങൾക്ക് സ്വയം ഉത്തരവാദികളാണ്."
 
 #: core/templates/terms_of_service.html:94
 msgid "4. User Responsibilities"
-msgstr ""
+msgstr "4. ഉപയോക്താവിന്റെ ഉത്തരവാദിത്തങ്ങൾ"
 
 #: core/templates/terms_of_service.html:96
 msgid ""
 "Users must provide accurate information during registration and maintain the "
 "confidentiality of their account credentials."
-msgstr ""
+msgstr "രജിസ്ട്രേഷൻ സമയത്ത് ഉപയോക്താക്കൾ കൃത്യമായ വിവരങ്ങൾ നൽകണം, കൂടാതെ അവരുടെ അക്കൗണ്ട് ക്രെഡൻഷ്യൽസ് രഹസ്യമായി സൂക്ഷിക്കണം."
 
 #: core/templates/terms_of_service.html:99
 msgid "5. Limitation of Liability"
-msgstr ""
+msgstr "5. ഉത്തരവാദിത്വത്തിന്റെ പരിമിതി"
 
 #: core/templates/terms_of_service.html:101
 msgid ""
 "We are not liable for any financial losses or damages resulting from the use "
 "of this platform."
-msgstr ""
+msgstr "ഈ പ്ലാറ്റ്ഫോം ഉപയോഗിക്കുന്നതിലൂടെ ഉണ്ടാകുന്ന സാമ്പത്തിക നഷ്ടങ്ങൾക്കോ മറ്റ് നാശനഷ്ടങ്ങൾക്കോ ഞങ്ങൾ ഉത്തരവാദികളല്ല."
 
 #: core/templates/terms_of_service.html:104
 msgid "6. Modifications"
-msgstr ""
+msgstr "6. ഭേദഗതികൾ"
 
 #: core/templates/terms_of_service.html:106
 msgid ""
 "We reserve the right to modify or discontinue any part of the platform at "
 "any time without notice."
-msgstr ""
+msgstr "മുന്നറിയിപ്പ് നൽകാതെ, ഏതുസമയത്തും പ്ലാറ്റ്ഫോമിന്റെ ഏതെങ്കിലും ഭാഗം മാറ്റുകയോ നിർത്തലാക്കുകയോ ചെയ്യാനുള്ള അവകാശം ഞങ്ങൾ സംരക്ഷിക്കുന്നു."
 
 #: core/templates/terms_of_service.html:109
 msgid "7. Governing Law"
-msgstr ""
+msgstr "7. പ്രാബല്യത്തിലുള്ള നിയമം"
 
 #: core/templates/terms_of_service.html:111
 msgid ""
 "These terms shall be governed by applicable laws of the jurisdiction in "
 "which the platform operates."
-msgstr ""
+msgstr "പ്ലാറ്റ്ഫോം പ്രവർത്തിക്കുന്ന അധികാരപരിധിയിലെ പ്രാബല്യത്തിലുള്ള നിയമങ്ങൾ അനുസരിച്ചാണ് ഈ നിബന്ധനകൾ നിയന്ത്രിക്കപ്പെടുന്നത്."
 
 #: fttt_project/settings.py:118
 msgid "English"
-msgstr ""
+msgstr "ഇംഗ്ലീഷ്"
 
 #: fttt_project/settings.py:119
 msgid "Hindi"
-msgstr ""
+msgstr "ഇംഗ്ലീഷ്"
 
 #: fttt_project/settings.py:120
 msgid "Marathi"
-msgstr ""
+msgstr "മറാത്തി"
 
 #: fttt_project/settings.py:121
 msgid "Malayalam"
-msgstr ""
+msgstr "മലയാളം"

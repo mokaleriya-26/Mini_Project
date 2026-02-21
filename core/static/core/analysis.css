@@ -109,3 +109,20 @@ canvas{width:100% !important;height:100% !important;}
   color: #D9E2EC;
   border: 1px solid rgba(255,255,255,0.2);
 }
+.news-item a {
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.news-item a:hover {
+  color: var(--accent-2);
+  transform: translateX(4px);
+  text-decoration: underline;
+}
+
+#newsList a {
+  color: #ffffff !important;
+}
