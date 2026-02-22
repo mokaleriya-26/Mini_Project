@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const generateBtn = document.getElementById("generateBtn");
     const placeholderCard = document.getElementById("placeholderCard");
     const fullWidthCharts = document.getElementById("fullWidthCharts");
+    const statsCard = document.getElementById("statsCard");
 
     // News
     const newsTitle = document.getElementById("newsTitle");
     const newsList = document.getElementById("newsList");
+    const tweetsList = document.getElementById("tweetsList");
     
     // Stats
     const statsTable = document.getElementById("statsTable");
@@ -108,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         generateBtn.disabled = true;
         generateBtn.textContent = "Generating...";
         placeholderCard.style.display = "none";
+        statsCard.style.display = "block";
         fullWidthCharts.style.display = "block"; // Show the section
 
         try {
@@ -151,24 +154,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 newsList.innerHTML = `<div class="muted" style="margin-bottom:8px;">• No recent news found.</div>`;
             }
 
+            // Populate Tweets
+            tweetsList.innerHTML = "";
+            if (data.latest_tweets && data.latest_tweets.length > 0) {
+                data.latest_tweets.forEach(t => {
+                    const div = document.createElement("div");
+                    div.className = "news-item";
+
+                    let sentimentClass = "";
+                    if (t.sentiment_label === "Positive") {
+                        sentimentClass = "sent-positive";
+                    } else if (t.sentiment_label === "Negative") {
+                        sentimentClass = "sent-negative";
+                    } else {
+                        sentimentClass = "sent-neutral";
+                    }
+                    div.innerHTML = `
+                        <div>${t.text}</div>
+                        <div class="muted">@${t.username}</div>
+                        <div class="sentiment-badge ${sentimentClass}">
+                            ${t.sentiment_label} | ${t.sentiment_score}
+                        </div>
+                    `;
+                    tweetsList.appendChild(div);
+                });
+            } else {
+                tweetsList.innerHTML = `<div class="muted">• No recent tweets found.</div>`;
+            }
+
             // Populate Stats
             statsTable.innerHTML = ""; // Clear old stats
             // We use key_stats from your API
-            for (const [k, v] of Object.entries(data.key_stats)) {
-                let formattedValue = v;
-                // Format numbers nicely
-                if (typeof v === 'number') {
-                    if (k === 'volume') {
-                        formattedValue = v.toLocaleString(); // Add commas
-                    } else {
-                        formattedValue = `₹${v.toFixed(2)}`; // Add currency
+            const entries = Object.entries(data.key_stats);
+            const leftColumn = entries.slice(0, 7);
+            const rightColumn = entries.slice(7);
+
+            statsTable.innerHTML = "";
+
+            // Create two containers
+            const leftDiv = document.createElement("div");
+            const rightDiv = document.createElement("div");
+
+            [leftColumn, rightColumn].forEach((column, index) => {
+                const container = index === 0 ? leftDiv : rightDiv;
+
+                column.forEach(([k, v]) => {
+                    let formattedValue = v;
+
+                    if (typeof v === 'number') {
+                        if (k === 'volume') {
+                            formattedValue = v.toLocaleString();
+                        } else {
+                            formattedValue = `₹${v.toFixed(2)}`;
+                        }
                     }
-                }
-                const keyName = k.replace("_", " ").toUpperCase(); // "last_close" -> "LAST CLOSE"
-                const row = document.createElement("tr");
-                row.innerHTML = `<td>${keyName}</td><td>${formattedValue}</td>`;
-                statsTable.appendChild(row);
-            }
+
+                    const row = document.createElement("div");
+                    row.className = "stats-row";
+
+                    row.innerHTML = `
+                        <span class="stats-label">
+                            ${k.replace("_", " ").toUpperCase()}
+                        </span>
+                        <span class="stats-value">
+                            ${formattedValue}
+                        </span>
+                    `;
+
+                    container.appendChild(row);
+                });
+            });
+
+            statsTable.appendChild(leftDiv);
+            statsTable.appendChild(rightDiv);
 
             // Populate Historical Chart
             if (window.histChartObj) window.histChartObj.destroy();
@@ -224,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Error: " + error.message);
             // Show placeholder again if it fails
             placeholderCard.style.display = "block";
+            statsCard.style.display = "none";
             fullWidthCharts.style.display = "none";
         } finally {
             // 4. Reset button

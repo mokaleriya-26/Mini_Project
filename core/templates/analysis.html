@@ -50,9 +50,17 @@
 
     <!-- Right Section (for welcome/placeholder) -->
     <section class="right">
+      <!-- Welcome Card -->
       <div class="card" id="placeholderCard">
         <h3>{% trans "Welcome!" %}</h3>
-        <div class="muted">{% trans "Select a NIFTY 50 company to view charts, news, and predictions." %}</div>
+        <div class="muted">
+          {% trans "Select a NIFTY 50 company to view charts, news, and predictions." %}
+        </div>
+      </div>
+      <!-- Key Stats Card (Hidden Initially) -->
+      <div class="card" id="statsCard" style="display:none;">
+        <h3>{% trans "Key Stats" %}</h3>
+        <table class="stats-table" id="statsTable"></table>
       </div>
     </section>
   </div>
@@ -92,10 +100,10 @@
         <h3 id="newsTitle">{% trans "Latest News (—)" %}</h3>
         <div class="news-list" id="newsList"></div>
       </div>
-
-      <div class="card" id="statsCard">
-        <h3>{% trans "Key Stats" %}</h3>
-        <table class="stats-table" id="statsTable"></table>
+      <!-- Tweets Section -->
+      <div class="card" id="tweetsCard">
+        <h3>{% trans "Latest Tweets" %}</h3>
+        <div class="news-list" id="tweetsList"></div>
       </div>
     </div>
   </div>

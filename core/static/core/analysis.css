@@ -34,10 +34,25 @@ body::before {
 h1.title{font-size:18px;margin:0;font-weight:800}
 .subtitle{font-size:13px;color:rgba(217,226,236,0.7)}
 
-/* Layout */
-.layout{display:grid;grid-template-columns:360px 1fr;gap:20px;align-items:start}
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
 @media (max-width:980px){.layout{grid-template-columns:1fr}}
-.panel{position:sticky;top:20px;background: rgba(11,19,43,0.85);border-radius:var(--radius);padding:18px;border:1px solid rgba(0,224,255,0.1);backdrop-filter:blur(6px);}
+.panel{
+  position:sticky;
+  top:20px;
+  background: rgba(11,19,43,0.85);
+  border-radius:var(--radius);
+  padding:18px;
+  border:1px solid rgba(0,224,255,0.1);
+  backdrop-filter:blur(6px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Dropdown & Buttons */
 label.select-label{display:block;font-weight:800;margin-bottom:8px}
@@ -71,10 +86,50 @@ canvas{width:100% !important;height:100% !important;}
 .top-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
 @media(max-width:900px){.top-cards{grid-template-columns:1fr}}
 .muted{color:rgba(217,226,236,0.75);font-size:13px;}
-.stats-table{width:100%;border-collapse:collapse;margin-top:8px;}
-.stats-table td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13px;}
-.stats-table td:first-child{color:rgba(217,226,236,0.7);}
-.stats-table td:last-child{font-weight:800;color:var(--accent-2);}
+.stats-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* TWO MAIN COLUMNS */
+  gap: 20px;
+  width: 100%;
+}
+.stats-table tr {
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.stats-table td {
+  font-size: 12px;
+}
+.stats-table td:first-child {
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+}
+
+.stats-table td:last-child {
+  font-weight: 600;
+  color: var(--accent-2);
+  text-align: right;  /* IMPORTANT */
+}
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.stats-label {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+
+.stats-value {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-2);
+}
 .tip{margin-top:12px;color:rgba(217,226,236,0.7);font-size:13px;}
 .footer{margin-top:18px;color:rgba(217,226,236,0.55);font-size:13px;text-align:center;}
 
