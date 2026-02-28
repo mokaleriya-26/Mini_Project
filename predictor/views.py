@@ -14,6 +14,8 @@ import spacy
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
 import torch.nn.functional as F
+from deep_translator import GoogleTranslator
+from django.utils import translation
 
 nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser", "lemmatizer"])
 
@@ -84,7 +86,6 @@ try:
     scaler = joblib.load(SCALER_PATH)
 
     print("✅ Model and scaler loaded successfully.")
-    model.summary()
 except Exception as e:
     print(f"❌ Error loading model/scaler: {e}")
     model = None
@@ -203,7 +204,7 @@ def get_finbert_sentiment(text):
 
     return score, label, confidence_score
 
-def fetch_company_news(ticker, from_date, to_date):
+def fetch_company_news(ticker, from_date, to_date, lang="en"):
     headlines = []
     sentiments = []
     seen_titles = set()
@@ -236,10 +237,20 @@ def fetch_company_news(ticker, from_date, to_date):
             seen_titles.add(title)
             score, label, confidence = get_finbert_sentiment(title)
             sentiments.append(score)
+            translated_title = title
 
+            if lang != "en":
+                try:
+                    translated_title = GoogleTranslator(
+                        source="auto",
+                        target=lang
+                    ).translate(title)
+                except:
+                    translated_title = title
+                    
             headlines.append({
                 "source": publisher or "Yahoo Finance",
-                "title": title,
+                "title": translated_title,
                 "url": link,
                 "published_at": formatted_time,
                 "raw_time": dt,
@@ -279,7 +290,6 @@ def fetch_company_news(ticker, from_date, to_date):
 
             for a in articles:
                 title = a.get("title")
-
                 if not title or title in seen_titles:
                     continue
 
@@ -287,6 +297,15 @@ def fetch_company_news(ticker, from_date, to_date):
                 score, label, confidence = get_finbert_sentiment(title)
                 sentiments.append(score)
 
+                translated_title = title
+                if lang != "en":
+                    try:
+                        translated_title = GoogleTranslator(
+                            source="auto",
+                            target=lang
+                        ).translate(title)
+                    except:
+                        translated_title = title
                 published_at = a.get("publishedAt")
                 formatted_time = None
 
@@ -302,7 +321,7 @@ def fetch_company_news(ticker, from_date, to_date):
 
                 headlines.append({
                     "source": a.get("source", {}).get("name", "NewsAPI"),
-                    "title": title,
+                    "title": translated_title,
                     "url": a.get("url", "#"),
                     "published_at": formatted_time,
                     "raw_time": raw_dt,
@@ -366,6 +385,7 @@ def get_stock_prediction(request, ticker):
 
     try:
         # ----- 1. GET ALL DATA -----
+        lang = translation.get_language() or "en"
         print(f"\n--- Request received for {ticker} ---")
         
         stock_data = yf.download(tickers=ticker, period="6mo", interval="1d")
@@ -411,7 +431,8 @@ def get_stock_prediction(request, ticker):
         sentiment, news_headlines = fetch_company_news(
             ticker, 
             news_start.strftime('%Y-%m-%d'), 
-            news_end.strftime('%Y-%m-%d')
+            news_end.strftime('%Y-%m-%d'),
+            lang
         )
         future_sentiment = 0.0
         print(f"Current sentiment for {ticker}: {sentiment:.4f}")

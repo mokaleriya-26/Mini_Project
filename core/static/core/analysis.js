@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "RELIANCE.NS - Reliance Industries Limited",
         "SBILIFE.NS - SBI Life Insurance Company Limited",
         "SBIN.NS - State Bank of India",
-        "SHRIRARAM.NS - Shriram Finance Limited",
+        "SHRIRAMFIN.NS - Shriram Finance Limited",
         "SUNPHARMA.NS - Sun Pharmaceuticals Industries Limited",
         "TATACONSUM.NS - Tata Consumer Products Limited",
         "TATASTEEL.NS - Tata Steel Limited",
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     div.innerHTML = `
                         <a href="${n.url}" target="_blank">${n.title}</a>
-                        <div class="muted">${n.source}
+                        <div class="muted">
                             ${n.source} • ${n.published_at || "—"}
                         </div>
                         <div class="sentiment-badge ${sentimentClass}">
@@ -207,9 +207,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     let formattedValue = v;
 
                     if (typeof v === 'number') {
-                        if (k === 'volume') {
+
+                        if (k === 'volume' || k === 'market_cap') {
                             formattedValue = v.toLocaleString();
-                        } else {
+                        }
+                        else if (k === 'pe_ratio' || k === 'forward_pe' || k === 'beta' || k === 'eps_basic') {
+                            formattedValue = v.toFixed(2);
+                        }
+                        else {
                             formattedValue = `₹${v.toFixed(2)}`;
                         }
                     }
