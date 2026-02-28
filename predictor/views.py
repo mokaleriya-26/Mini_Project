@@ -103,6 +103,44 @@ except Exception as e:
 STOCK_ID_PATH = os.path.join(settings.ML_MODELS_DIR, 'stock_id_mapping.joblib')
 stock_to_id = joblib.load(STOCK_ID_PATH)
 # ===================== HELPER FUNCTIONS =====================
+def compare_stocks(request):
+    tickers_param = request.GET.get("tickers")
+
+    if not tickers_param:
+        return JsonResponse({"error": "No tickers provided"}, status=400)
+
+    tickers = tickers_param.split(",")
+
+    comparison_data = []
+
+    for ticker in tickers:
+        try:
+            stock_data = yf.download(ticker, period="3mo", interval="1d")
+
+            if stock_data.empty:
+                continue
+
+            stock_data.reset_index(inplace=True)
+
+            if isinstance(stock_data.columns, pd.MultiIndex):
+                stock_data.columns = stock_data.columns.get_level_values(0)
+
+            last_price = float(stock_data["Close"].iloc[-1])
+            start_price = float(stock_data["Close"].iloc[0])
+
+            percent_change = ((last_price - start_price) / start_price) * 100
+
+            comparison_data.append({
+                "ticker": ticker,
+                "current_price": round(last_price, 2),
+                "percent_change_3m": round(percent_change, 2)
+            })
+
+        except Exception as e:
+            print("Comparison error:", e)
+
+    return JsonResponse({"comparison": comparison_data})
+
 def build_company_keywords(ticker, company_name):
     """
     Builds flexible keywords for matching news titles.

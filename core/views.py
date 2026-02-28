@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from predictor.views import COMPANY_NAMES
 
 def home(request):
     """View for the Main Page (Home)"""
@@ -75,4 +76,8 @@ def terms_of_service(request):
 def analysis(request):
     # return HttpResponse("Analysis Page executed")
     return render(request, 'analysis.html', {})
+def comparison(request):
+    return render(request, "comparison.html", {
+        "companies": COMPANY_NAMES
+    })
 

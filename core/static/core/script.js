@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadTopCompanies();
 
     updateLiveInsight();          // first company
-    setInterval(updateLiveInsight, 4000);  // slideshow
+    setInterval(updateLiveInsight, 5000);  // slideshow
 });
 // ===== ARROW BUTTONS =====
 document.addEventListener("DOMContentLoaded", () => {

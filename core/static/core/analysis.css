@@ -181,3 +181,100 @@ canvas{width:100% !important;height:100% !important;}
 #newsList a {
   color: #ffffff !important;
 }
+/* ===========================
+   Premium Risk Meter v2
+=========================== */
+
+.risk-bar {
+  width: 100%;
+  height: 18px;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(20,255,236,0.15),
+    rgba(0,224,255,0.1),
+    rgba(255,107,107,0.1)
+  );
+  position: relative;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.risk-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #14FFEC 0%,
+    #00E0FF 50%,
+    #ff6b6b 100%
+  );
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(0,224,255,0.6);
+}
+
+.risk-label {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   Premium Signal Card
+=========================== */
+
+.signal-container {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.3));
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.signal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.signal-strength {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.signal-note {
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.signal-buy {
+  color: #14FFEC;
+}
+
+.signal-sell {
+  color: #ff6b6b;
+}
+
+.signal-hold {
+  color: #7FDBFF;
+}
+.confidence {
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+#riskCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

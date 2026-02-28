@@ -16,4 +16,5 @@ urlpatterns = [
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'), # Path for the privacy policy page (http://127.0.0.1:8000/privacy-policy/)
     path('terms-of-service/', views.terms_of_service, name='terms_of_service'), # Path for the terms of service page (http://127.0.0.1:8000/terms-of-service/)
     path('analysis/', views.analysis, name='analysis'),
+    path('comparison/', views.comparison, name='comparison_page'),
 ]

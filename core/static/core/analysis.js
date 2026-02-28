@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // News
     const newsTitle = document.getElementById("newsTitle");
     const newsList = document.getElementById("newsList");
-    const redditList = document.getElementById("redditList");
     
     // Stats
     const statsTable = document.getElementById("statsTable");
@@ -156,37 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 newsList.innerHTML = `<div class="muted" style="margin-bottom:8px;">• No recent news found.</div>`;
             }
 
-            // Populate Reddit
-            redditList.innerHTML = "";
-
-            if (data.latest_reddit && data.latest_reddit.length > 0) {
-                data.latest_reddit.forEach(r => {
-                    const div = document.createElement("div");
-                    div.className = "news-item";
-
-                    let sentimentClass = "";
-                    if (r.sentiment_label === "Positive") {
-                        sentimentClass = "sent-positive";
-                    } else if (r.sentiment_label === "Negative") {
-                        sentimentClass = "sent-negative";
-                    } else {
-                        sentimentClass = "sent-neutral";
-                    }
-
-                    div.innerHTML = `
-                        <a href="${r.url}" target="_blank">${r.title}</a>
-                        <div class="muted">r/${r.subreddit}</div>
-                        <div class="sentiment-badge ${sentimentClass}">
-                            ${r.sentiment_label} | ${r.sentiment_score}
-                        </div>
-                    `;
-
-                    redditList.appendChild(div);
-                });
-            } else {
-                redditList.innerHTML = `<div class="muted">• No recent Reddit posts found.</div>`;
-            }
-
             // Populate Stats
             statsTable.innerHTML = ""; // Clear old stats
             // We use key_stats from your API
@@ -286,6 +254,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 div.innerHTML = `<div class="pred-date">${date}</div><div class="pred-price">₹${price.toFixed(2)}</div>`;
                 predGrid.appendChild(div);
             });
+
+            // =========================
+            // RISK + SIGNAL SECTION
+            // =========================
+
+            const prices = data.historical_graph_data.prices;
+            const predictedPrices = data.prediction_graph_data.prices;
+
+            if (!prices.length || !predictedPrices.length) {
+                console.warn("No price data available");
+                return;
+            }
+            const lastPrice = prices[prices.length - 1];
+            const predictedFirst = predictedPrices[0];
+
+            // RISK SCORE CALCULATION
+
+            let volatility = 0;
+            for (let i = 1; i < prices.length; i++) {
+                volatility += Math.abs(prices[i] - prices[i - 1]);
+            }
+            volatility = volatility / prices.length;
+
+            // Normalize risk score (simple scaling)
+            let riskScore = Math.min(100, (volatility / lastPrice) * 1000);
+
+            const riskFill = document.getElementById("riskFill");
+            const riskLabel = document.getElementById("riskLabel");
+            riskFill.style.width = riskScore + "%";
+            if (riskScore < 30) {
+                riskLabel.textContent = "Low Risk";
+                riskFill.style.boxShadow = "0 0 15px #14FFEC";
+            }
+            else if (riskScore < 60) {
+                riskLabel.textContent = "Moderate Risk";
+                riskFill.style.boxShadow = "0 0 15px #00E0FF";
+            }
+            else {
+                riskLabel.textContent = "High Risk";
+                riskFill.style.boxShadow = "0 0 15px #ff6b6b";
+            }
+
+            // BUY / SELL / HOLD SIGNAL
+            const signalText = document.getElementById("tradeSignalText");
+            const signalArrow = document.getElementById("signalArrow");
+            const confidenceDiv = document.getElementById("signalConfidence");
+            const signalNote = document.getElementById("signalNote");
+
+            signalText.classList.remove("signal-buy", "signal-sell", "signal-hold");
+
+            let confidencePercent = Math.abs((predictedFirst - lastPrice) / lastPrice) * 100;
+            confidencePercent = Math.min(confidencePercent, 100).toFixed(2);
+
+            if (predictedFirst > lastPrice * 1.02) {
+                signalText.textContent = "BUY";
+                signalArrow.textContent = "↑";
+                signalText.classList.add("signal-buy");
+                signalNote.textContent = "Upward momentum detected.";
+            } 
+            else if (predictedFirst < lastPrice * 0.98) {
+                signalText.textContent = "SELL";
+                signalArrow.textContent = "↓";
+                signalText.classList.add("signal-sell");
+                signalNote.textContent = "Downward pressure expected.";
+            } 
+            else {
+                signalText.textContent = "HOLD";
+                signalArrow.textContent = "→";
+                signalText.classList.add("signal-hold");
+                signalNote.textContent = "Sideways consolidation likely.";
+            }
+
+            confidenceDiv.textContent = "Signal Strength: " + confidencePercent + "%";
 
         } catch (error) {
             console.error("Failed to generate insights:", error);

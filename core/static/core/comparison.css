@@ -1,0 +1,119 @@
+/* ===========================
+   Comparison Section
+=========================== */
+
+.compare-section {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.compare-card {
+  width: 100%;
+  max-width: 1100px;
+  background: linear-gradient(
+      180deg,
+      rgba(11,19,43,0.85),
+      rgba(11,19,43,0.75)
+  );
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid rgba(0,224,255,0.1);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+/* Label */
+.compare-card label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* Multi Select */
+.multi-select {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.multi-select option {
+  background: #ffffff;
+  color: #000;
+  padding: 6px;
+}
+
+/* Compare Button */
+.compare-btn {
+  margin-top: 16px;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 800;
+  font-size: 14px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #001;
+  box-shadow: 0 10px 30px rgba(0,224,255,0.08);
+  transition: all 0.3s ease;
+}
+
+.compare-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,224,255,0.18);
+}
+
+/* Chart Area */
+.compare-chart-wrap {
+  margin-top: 30px;
+  height: 400px;
+  width: 100%;
+}
+
+#comparisonChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Stats Section */
+.compare-stats {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* Individual Stat Card */
+.compare-stats .stat-box {
+  background: rgba(0,0,0,0.3);
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,224,255,0.08);
+  transition: 0.3s ease;
+}
+
+.compare-stats .stat-box:hover {
+  outline: 2px solid rgba(20,255,236,0.18);
+  box-shadow: 0 10px 30px rgba(0,224,255,0.06);
+  transform: translateY(-3px);
+}
+
+.stat-title {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-2);
+}
