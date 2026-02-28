@@ -7,11 +7,14 @@ import joblib
 import yfinance as yf
 import numpy as np
 import pandas as pd
-from textblob import TextBlob
 import requests
 from datetime import datetime, timedelta
 import os
 import spacy
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+import torch
+import torch.nn.functional as F
+
 nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser", "lemmatizer"])
 
 COMPANY_NAMES = {
@@ -81,11 +84,23 @@ try:
     scaler = joblib.load(SCALER_PATH)
 
     print("✅ Model and scaler loaded successfully.")
+    model.summary()
 except Exception as e:
     print(f"❌ Error loading model/scaler: {e}")
     model = None
     scaler = None
 
+print("Loading FinBERT model...")
+try:
+    finbert_tokenizer = AutoTokenizer.from_pretrained("ProsusAI/finbert")
+    finbert_model = AutoModelForSequenceClassification.from_pretrained("ProsusAI/finbert")
+    print("✅ FinBERT loaded successfully.")
+except Exception as e:
+    print("❌ FinBERT loading error:", e)
+    finbert_model = None
+
+STOCK_ID_PATH = os.path.join(settings.ML_MODELS_DIR, 'stock_id_mapping.joblib')
+stock_to_id = joblib.load(STOCK_ID_PATH)
 # ===================== HELPER FUNCTIONS =====================
 def build_company_keywords(ticker, company_name):
     """
@@ -157,6 +172,37 @@ def is_article_about_company(title, company_name):
 
     return False
 
+def get_finbert_sentiment(text):
+    if finbert_model is None:
+        return 0.0, "Neutral", 0.0
+
+    inputs = finbert_tokenizer(text, return_tensors="pt", truncation=True)
+
+    with torch.no_grad():
+        outputs = finbert_model(**inputs)
+
+    probs = F.softmax(outputs.logits, dim=1)
+    confidence, predicted_class = torch.max(probs, dim=1)
+
+    label_map = {
+        0: "Negative",
+        1: "Neutral",
+        2: "Positive"
+    }
+
+    label = label_map[predicted_class.item()]
+    confidence_score = confidence.item()
+
+    # Convert to numeric score
+    if label == "Positive":
+        score = confidence_score
+    elif label == "Negative":
+        score = -confidence_score
+    else:
+        score = 0.0
+
+    return score, label, confidence_score
+
 def fetch_company_news(ticker, from_date, to_date):
     headlines = []
     sentiments = []
@@ -188,18 +234,18 @@ def fetch_company_news(ticker, from_date, to_date):
             if not title or title in seen_titles:
                 continue
             seen_titles.add(title)
-            score = float(TextBlob(title).sentiment.polarity)
+            score, label, confidence = get_finbert_sentiment(title)
             sentiments.append(score)
-            label = "Positive" if score > 0.1 else "Negative" if score < -0.1 else "Neutral"
 
             headlines.append({
                 "source": publisher or "Yahoo Finance",
                 "title": title,
                 "url": link,
                 "published_at": formatted_time,
-                "raw_time": dt, 
+                "raw_time": dt,
                 "sentiment_score": round(score, 3),
-                "sentiment_label": label
+                "sentiment_label": label,
+                "confidence": round(confidence * 100, 2)
             })
 
     except Exception as e:
@@ -238,11 +284,8 @@ def fetch_company_news(ticker, from_date, to_date):
                     continue
 
                 seen_titles.add(title)
-
-                score = float(TextBlob(title).sentiment.polarity)
+                score, label, confidence = get_finbert_sentiment(title)
                 sentiments.append(score)
-
-                label = "Positive" if score > 0.1 else "Negative" if score < -0.1 else "Neutral"
 
                 published_at = a.get("publishedAt")
                 formatted_time = None
@@ -264,7 +307,8 @@ def fetch_company_news(ticker, from_date, to_date):
                     "published_at": formatted_time,
                     "raw_time": raw_dt,
                     "sentiment_score": round(score, 3),
-                    "sentiment_label": label
+                    "sentiment_label": label,
+                    "confidence": round(confidence * 100, 2)
                 })
 
     except Exception as e:
@@ -376,11 +420,15 @@ def get_stock_prediction(request, ticker):
         stock_data_features = prepare_features(stock_data.copy(), sentiment)
         stock_data_features = stock_data_features.bfill().ffill()
         
-        features_to_predict = stock_data_features[["price", "sentiment", "MA5", "MA10"]].values
+        symbol = ticker.split(".")[0]
+        stock_id = stock_to_id.get(ticker, 0)
+        stock_data_features["stock_id"] = stock_id
+
+        features_to_predict = stock_data_features[["price", "sentiment", "MA5", "MA10", "stock_id"]].values
         last_sequence_unscaled = features_to_predict[-LOOKBACK:]
         
         current_seq_scaled = scaler.transform(last_sequence_unscaled)
-        current_seq_scaled = current_seq_scaled.reshape((1, LOOKBACK, 4))
+        current_seq_scaled = current_seq_scaled.reshape((1, LOOKBACK, 5))
 
         future_sentiment = 0.0  # IMPORTANT FIX
         # ----- 3. RUN 14-DAY PREDICTION (CORRECT WAY) -----
@@ -390,7 +438,7 @@ def get_stock_prediction(request, ticker):
         pred_scaled = model.predict(current_seq_scaled, verbose=0)[0]  # shape (14,)
 
         # Inverse scale correctly
-        dummy = np.zeros((14, 4))
+        dummy = np.zeros((14, 5))
         dummy[:, 0] = pred_scaled  # Close column only
 
         predicted_prices = scaler.inverse_transform(dummy)[:, 0]

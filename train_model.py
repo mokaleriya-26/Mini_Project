@@ -23,8 +23,8 @@ TICKERS = [
     "ADANIENT.NS","ADANIPORTS.NS","APOLLOHOSP.NS","ASIANPAINT.NS","AXISBANK.NS","BAJAJ-AUTO.NS","BAJAJFINSV.NS","BAJFINANCE.NS","BEL.NS","BHARTIARTL.NS",
     "CIPLA.NS","COALINDIA.NS","DRREDDY.NS","EICHERMOT.NS","ETERNAL.NS","GRASIM.NS","HCLTECH.NS","HDFCBANK.NS","HDFCLIFE.NS","HINDALCO.NS",
     "HINDUNILVR.NS","ICICIBANK.NS","INDIGO.NS","INFY.NS","ITC.NS","JIOFIN.NS","JSWSTEEL.NS","KOTAKBANK.NS","LT.NS","M&M.NS","MARUTI.NS","MAXHEALTH.NS",
-    "NESTLEIND.NS","NTPC.NS ","ONGC.NS","POWERGRID.NS","RELIANCE.NS","SBILIFE.NS","SBIN.NS","SHRIRAMFIN.NS","SUNPHARMA.NS","TATACONSUM.NS",
-    "TATASTEEL.NS","TCS.NS","TECHM.NS","TITAN.NS","TMPV.NS","TRENT.NS ","ULTRACEMCO.NS","WIPRO.NS "
+    "NESTLEIND.NS","NTPC.NS","ONGC.NS","POWERGRID.NS","RELIANCE.NS","SBILIFE.NS","SBIN.NS","SHRIRAMFIN.NS","SUNPHARMA.NS","TATACONSUM.NS",
+    "TATASTEEL.NS","TCS.NS","TECHM.NS","TITAN.NS","TMPV.NS","TRENT.NS","ULTRACEMCO.NS","WIPRO.NS"
 ]
 
 NEWS_API_KEY = "2d365d32d1ac438498abaaed02e8c679"
@@ -32,6 +32,10 @@ TRAIN_START_DATE = "2020-01-01"
 TRAIN_END_DATE = datetime.now().strftime('%Y-%m-%d')
 LOOKBACK = 60
 EPOCHS = 60
+
+# Create stock ID mapping
+stock_to_id = {ticker: idx for idx, ticker in enumerate(TICKERS)}
+print("Stock ID Mapping:", stock_to_id)
 
 # --- FUNCTIONS ---
 def fetch_stock_data(ticker, start, end):
@@ -191,8 +195,9 @@ if __name__ == "__main__":
         sentiment_df = fetch_news_sentiment_daily(ticker, TRAIN_START_DATE, TRAIN_END_DATE)
         stock_data = prepare_features(stock_data, sentiment_df)
 
-        # 🔒 STRICT FEATURE SELECTION
+        stock_id = stock_to_id[ticker]
         features_df = stock_data.loc[:, ["Close", "sentiment", "MA5", "MA10"]].copy()
+        features_df["stock_id"] = stock_id
         all_data.append(features_df)
 
     # 🔒 SAFETY CHECK
@@ -203,7 +208,7 @@ if __name__ == "__main__":
     combined_data = pd.concat(all_data, axis=0, ignore_index=True)
 
     # 🔒 FORCE FINAL FEATURE SET
-    combined_data = combined_data[["Close", "sentiment", "MA5", "MA10"]]
+    combined_data = combined_data[["Close", "sentiment", "MA5", "MA10", "stock_id"]]
 
     print("FINAL combined_data shape:", combined_data.shape)
     print("Columns:", combined_data.columns.tolist())
@@ -218,7 +223,7 @@ if __name__ == "__main__":
     print("y shape:", y.shape)
 
     # 4. Build & train model
-    model = build_lstm_model(input_shape=(LOOKBACK, 4))
+    model = build_lstm_model(input_shape=(LOOKBACK, 5))
 
     early_stop = EarlyStopping(
         monitor="val_loss",
@@ -239,6 +244,8 @@ if __name__ == "__main__":
     # 5. Save model and scaler
     model.save("ml_models/stock_model.h5")
     joblib.dump(scaler, "ml_models/stock_scaler.joblib")
+    joblib.dump(stock_to_id, "ml_models/stock_id_mapping.joblib")
 
+    print("✅ Model saved.")
     print("✅ Model saved to ml_models/stock_model.h5")
     print("✅ Scaler saved to ml_models/stock_scaler.joblib")
