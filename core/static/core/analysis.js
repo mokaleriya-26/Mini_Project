@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // News
     const newsTitle = document.getElementById("newsTitle");
     const newsList = document.getElementById("newsList");
-    const tweetsList = document.getElementById("tweetsList");
+    const redditList = document.getElementById("redditList");
     
     // Stats
     const statsTable = document.getElementById("statsTable");
@@ -143,7 +143,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     div.innerHTML = `
                         <a href="${n.url}" target="_blank">${n.title}</a>
-                        <div class="muted">${n.source}</div>
+                        <div class="muted">${n.source}
+                            ${n.source} • ${n.published_at || "—"}
+                        </div>
                         <div class="sentiment-badge ${sentimentClass}">
                             ${n.sentiment_label} | ${n.sentiment_score}
                         </div>
@@ -154,32 +156,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 newsList.innerHTML = `<div class="muted" style="margin-bottom:8px;">• No recent news found.</div>`;
             }
 
-            // Populate Tweets
-            tweetsList.innerHTML = "";
-            if (data.latest_tweets && data.latest_tweets.length > 0) {
-                data.latest_tweets.forEach(t => {
+            // Populate Reddit
+            redditList.innerHTML = "";
+
+            if (data.latest_reddit && data.latest_reddit.length > 0) {
+                data.latest_reddit.forEach(r => {
                     const div = document.createElement("div");
                     div.className = "news-item";
 
                     let sentimentClass = "";
-                    if (t.sentiment_label === "Positive") {
+                    if (r.sentiment_label === "Positive") {
                         sentimentClass = "sent-positive";
-                    } else if (t.sentiment_label === "Negative") {
+                    } else if (r.sentiment_label === "Negative") {
                         sentimentClass = "sent-negative";
                     } else {
                         sentimentClass = "sent-neutral";
                     }
+
                     div.innerHTML = `
-                        <div>${t.text}</div>
-                        <div class="muted">@${t.username}</div>
+                        <a href="${r.url}" target="_blank">${r.title}</a>
+                        <div class="muted">r/${r.subreddit}</div>
                         <div class="sentiment-badge ${sentimentClass}">
-                            ${t.sentiment_label} | ${t.sentiment_score}
+                            ${r.sentiment_label} | ${r.sentiment_score}
                         </div>
                     `;
-                    tweetsList.appendChild(div);
+
+                    redditList.appendChild(div);
                 });
             } else {
-                tweetsList.innerHTML = `<div class="muted">• No recent tweets found.</div>`;
+                redditList.innerHTML = `<div class="muted">• No recent Reddit posts found.</div>`;
             }
 
             // Populate Stats

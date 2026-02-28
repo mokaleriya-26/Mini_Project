@@ -11,6 +11,8 @@ from textblob import TextBlob
 import requests
 from datetime import datetime, timedelta
 import os
+import spacy
+nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser", "lemmatizer"])
 
 COMPANY_NAMES = {
     "ADANIENT": "Adani Enterprises Limited",
@@ -21,7 +23,7 @@ COMPANY_NAMES = {
     "BAJAJ-AUTO": "Bajaj Auto Limited",
     "BAJAJFINSV": "Bajaj Finserv Limited",
     "BAJFINANCE": "Bajaj Finance Limited",
-    "BEL": "Bharti Electronics Limited",
+    "BEL": "Bharat Electronics Limited",
     "BHARTIARTL": "Bharti Airtel Limited",
     "CIPLA": "Cipla Limited",
     "COALINDIA": "Coal India Limited",
@@ -52,7 +54,7 @@ COMPANY_NAMES = {
     "RELIANCE": "Reliance Industries Limited",
     "SBILIFE": "SBI Life Insurance Company Limited",
     "SBIN": "State Bank of India",
-    "SHRIRARAM": "Shriram Finance Limited",
+    "SHRIRAMFIN": "Shriram Finance Limited",
     "SUNPHARMA": "Sun Pharmaceuticals Industries Limited",
     "TATACONSUM": "Tata Consumer Products Limited",
     "TATASTEEL": "Tata Steel Limited",
@@ -110,109 +112,177 @@ def build_company_keywords(ticker, company_name):
 
     return list(keywords)
 
+financial_keywords = [
+    "stock", "shares", "earnings", "results",
+    "profit", "loss", "revenue", "market",
+    "q1", "q2", "q3", "q4",
+    "alert", "target", "buy", "sell", "hold",
+    "surge", "falls", "jumps", "finance",
+    "budget", "update", "guide",
+    "dividend", "rate", "growth", "decline"
+]
+
+def is_financial_article(title):
+    title_lower = title.lower()
+    return any(word in title_lower for word in financial_keywords)
+
+
+def is_article_about_company(title, company_name):
+    doc = nlp(title)
+
+    detected_orgs = [ent.text.lower() for ent in doc.ents if ent.label_ == "ORG"]
+
+    company_clean = company_name.replace(" Limited", "").lower()
+    company_words = company_clean.split()
+
+    # 1️⃣ Check detected ORGs
+    for org in detected_orgs:
+        if company_clean in org:
+            return True
+        
+        # Partial match (at least 2 words match)
+        match_count = sum(1 for word in company_words if word in org)
+        if match_count >= 2:
+            return True
+
+    # 2️⃣ Fallback check in title
+    title_lower = title.lower()
+
+    if company_clean in title_lower:
+        return True
+
+    match_count = sum(1 for word in company_words if word in title_lower)
+    if match_count >= 2:
+        return True
+
+    return False
+
 def fetch_company_news(ticker, from_date, to_date):
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headlines = []
+    sentiments = []
+    seen_titles = set()
 
-    # ---- company name resolution ----
-    symbol = ticker.split(".")[0]
-    search_query = COMPANY_NAMES.get(symbol, symbol)
+    try:
+        # =============================
+        # 1️⃣ YAHOO FINANCE NEWS
+        # =============================
+        ticker_obj = yf.Ticker(ticker)
+        yahoo_news = ticker_obj.news
 
-    keywords = build_company_keywords(ticker, search_query)
+        for item in yahoo_news[:10]:
+            title = item.get("title")
+            link = item.get("link")
+            publisher = item.get("publisher")
+            provider_time = item.get("providerPublishTime")
 
-    url = "https://newsapi.org/v2/everything"
-
-    # ================= PASS 1 : STRICT =================
-    params = {
-        "q": search_query,
-        "from": from_date,
-        "to": to_date,
-        "language": "en",
-        "sortBy": "publishedAt",
-        "searchIn": "title",
-        "pageSize": 20,
-        "apiKey": NEWS_API_KEY
-    }
-
-    response = requests.get(url, params=params, headers=headers, timeout=15)
-    data = response.json()
-
-    if data.get("status") != "ok":
-        return 0.0, []
-
-    articles = data.get("articles", [])
-    sentiments, headlines = [], []
-
-    for a in articles:
-        title = a.get("title")
-        if not title:
-            continue
-
-        title_lower = title.lower()
-
-        if search_query.lower() not in title_lower and not any(
-            f" {k} " in f" {title_lower} " for k in keywords
-        ):
-            continue
-
-        score = float(TextBlob(title).sentiment.polarity)
-        sentiments.append(score)
-
-        # Create label
-        if score > 0.1:
-            label = "Positive"
-        elif score < -0.1:
-            label = "Negative"
-        else:
-            label = "Neutral"
-
-        headlines.append({
-            "source": a.get("source", {}).get("name", "Unknown"),
-            "title": title,
-            "url": a.get("url", "#"),
-            "sentiment_score": round(score, 3),
-            "sentiment_label": label
-        })
-
-    # ================= PASS 2 : FALLBACK =================
-    if not headlines:
-        print("NEWS FALLBACK TRIGGERED for", ticker)
-
-        params["searchIn"] = "title,description"
-        response = requests.get(url, params=params, headers=headers, timeout=15)
-        data = response.json()
-        articles = data.get("articles", [])
-
-        for a in articles:
-            title = a.get("title")
-            description = a.get("description", "")
             if not title:
                 continue
 
-            text = f"{title} {description}".lower()
+            formatted_time = None
+            if provider_time:
+                dt = datetime.fromtimestamp(provider_time)
+                if dt < datetime.now() - timedelta(days=30):
+                    continue
+                formatted_time = dt.strftime("%d %b %Y • %I:%M %p")
 
-            if not any(k in text for k in keywords):
+            if not title or title in seen_titles:
                 continue
-
+            seen_titles.add(title)
             score = float(TextBlob(title).sentiment.polarity)
             sentiments.append(score)
-
-            # Create label
-            if score > 0.1:
-                label = "Positive"
-            elif score < -0.1:
-                label = "Negative"
-            else:
-                label = "Neutral"
+            label = "Positive" if score > 0.1 else "Negative" if score < -0.1 else "Neutral"
 
             headlines.append({
-                "source": a.get("source", {}).get("name", "Unknown"),
+                "source": publisher or "Yahoo Finance",
                 "title": title,
-                "url": a.get("url", "#"),
+                "url": link,
+                "published_at": formatted_time,
+                "raw_time": dt, 
                 "sentiment_score": round(score, 3),
                 "sentiment_label": label
             })
 
+    except Exception as e:
+        print("Yahoo news error:", e)
+
+    try:
+        # =============================
+        # 2️⃣ NEWS API (FALLBACK ADDITION)
+        # =============================
+        symbol = ticker.split(".")[0]
+        company_full = COMPANY_NAMES.get(symbol, symbol)
+        company_clean = company_full.replace(" Limited", "")
+
+        url = "https://newsapi.org/v2/everything"
+
+        params = {
+            "q": f'"{company_clean}"',
+            "from": from_date,
+            "to": to_date,
+            "language": "en",
+            "sortBy": "publishedAt",
+            "pageSize": 10,
+            "apiKey": NEWS_API_KEY
+        }
+
+        response = requests.get(url, params=params, timeout=15)
+        data = response.json()
+
+        if data.get("status") == "ok":
+            articles = data.get("articles", [])
+
+            for a in articles:
+                title = a.get("title")
+
+                if not title or title in seen_titles:
+                    continue
+
+                seen_titles.add(title)
+
+                score = float(TextBlob(title).sentiment.polarity)
+                sentiments.append(score)
+
+                label = "Positive" if score > 0.1 else "Negative" if score < -0.1 else "Neutral"
+
+                published_at = a.get("publishedAt")
+                formatted_time = None
+
+                raw_dt = None
+                if published_at:
+                    try:
+                        raw_dt = datetime.strptime(published_at, "%Y-%m-%dT%H:%M:%SZ")
+                        formatted_time = raw_dt.strftime("%d %b %Y • %I:%M %p")
+                    except:
+                        formatted_time = published_at
+                else:
+                    raw_dt = datetime.now()
+
+                headlines.append({
+                    "source": a.get("source", {}).get("name", "NewsAPI"),
+                    "title": title,
+                    "url": a.get("url", "#"),
+                    "published_at": formatted_time,
+                    "raw_time": raw_dt,
+                    "sentiment_score": round(score, 3),
+                    "sentiment_label": label
+                })
+
+    except Exception as e:
+        print("NewsAPI error:", e)
+
+    # =============================
+    # 3️⃣ FINAL PROCESSING
+    # =============================
     sentiment_score = float(np.mean(sentiments)) if sentiments else 0.0
+
+    # Sort by published time (latest first)
+    headlines = sorted(
+        headlines,
+        key=lambda x: x.get("raw_time", datetime.min),
+        reverse=True
+    )
+    for h in headlines:
+        h.pop("raw_time", None)
     return sentiment_score, headlines[:5]
 
 def prepare_features(stock_data, sentiment_score):
@@ -293,7 +363,7 @@ def get_stock_prediction(request, ticker):
             return JsonResponse({"error": f"No stock data found for {ticker}"}, status=404)
 
         news_end = datetime.now()
-        news_start = news_end - timedelta(days=14) 
+        news_start = news_end - timedelta(days=30) 
         sentiment, news_headlines = fetch_company_news(
             ticker, 
             news_start.strftime('%Y-%m-%d'), 
